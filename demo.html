@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | Product Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .demo-container {
+            display: flex;
+            height: calc(100vh - 80px);
+            margin-top: 80px;
+            overflow: hidden;
+        }
+        .demo-sidebar {
+            width: 350px;
+            border-right: 1px solid var(--glass-border);
+            padding: 2rem;
+            overflow-y: auto;
+            background: rgba(15, 23, 42, 0.5);
+        }
+        .demo-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #000;
+            position: relative;
+        }
+        .video-placeholder {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #1e293b 0%, #000 100%);
+            position: relative;
+        }
+        .video-overlay {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            padding: 2rem;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            border-radius: 1rem;
+        }
+        .quiz-modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            padding: 3rem;
+            display: none;
+            z-index: 100;
+        }
+        .quiz-modal.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .lesson-list-item {
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .lesson-list-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .lesson-list-item.active {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: var(--cta-color);
+        }
+        .progress-indicator {
+            height: 4px;
+            background: var(--glass-border);
+            width: 100%;
+            margin-top: 2rem;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--cta-color);
+            width: 35%;
+            transition: width 0.5s ease;
+        }
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: var(--cta-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            color: #000;
+        }
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+        </style>
+    </noscript>
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="tracks.html">Tracks</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="video-paths.html">Roadmaps</a></li>
+                <li><a href="university.html">Academy</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="demo.html" class="active">Demo</a></li>
+                <li><a href="auth.html" class="btn btn-primary">Join Free</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="demo-container">
+        <div class="demo-sidebar">
+            <h3 style="margin-bottom: 2rem;">Track: <br><span>AI Engineering</span></h3>
+            
+            <div class="lesson-list-item active">
+                <div style="font-size: 0.75rem; color: var(--cta-color); font-weight: 700;">LESSON 4.2</div>
+                <div style="font-weight: 600;">Vector Embeddings & Pinecone</div>
+            </div>
+            <div class="lesson-list-item">
+                <div style="font-size: 0.75rem; color: var(--muted-text); font-weight: 700;">LESSON 4.3</div>
+                <div style="font-weight: 600;">Hybrid Search Implementation</div>
+            </div>
+            <div class="lesson-list-item">
+                <div style="font-size: 0.75rem; color: var(--muted-text); font-weight: 700;">LESSON 4.4</div>
+                <div style="font-weight: 600;">Evaluating RAG with Ragas</div>
+            </div>
+            
+            <div class="progress-indicator">
+                <div class="progress-bar" style="width: 45%;"></div>
+            </div>
+            <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted-text);">4.2 / 12 (45% Complete)</div>
+        </div>
+
+        <div class="demo-main">
+            <div class="video-placeholder">
+                <div id="code-snippet-demo" style="position: absolute; top: 2rem; left: 2rem; right: 2rem; opacity: 0.6; pointer-events: none;">
+                    <pre style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--glass-border); font-size: 0.8rem; color: #10B981;">
+// Upserting to Pinecone
+async function upsertEmbeddings(index, vectors) {
+  const upsertRequest = {
+    vectors: vectors.map(v => ({
+      id: v.id,
+      values: v.values,
+      metadata: v.metadata
+    }))
+  };
+  await index.upsert({ upsertRequest });
+}</pre>
+                </div>
+
+                <button class="play-btn" id="demo-play-btn">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="m7 4 12 8-12 8V4z"></path></svg>
+                </button>
+
+                <!-- Mock Quiz Modal -->
+                <div class="quiz-modal glass" id="quiz-modal">
+                    <div class="badge badge-mid" style="margin-bottom: 1rem;">Skill Check</div>
+                    <h3 style="margin-bottom: 1.5rem;">Why is "Top-K" retrieval important in a RAG pipeline?</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <button class="btn btn-secondary" onclick="correctAnswer()">It selects the most semantically relevant chunks for context</button>
+                        <button class="btn btn-secondary">It limits the training data to the top 1000 records</button>
+                        <button class="btn btn-secondary">It ensures the LLM only uses K-nearest neighbors for its weights</button>
+                    </div>
+                </div>
+
+                <div class="video-overlay" id="video-overlay">
+                    <div class="badge badge-new" style="margin-bottom: 0.5rem;">AI Engineering</div>
+                    <h2 style="margin-bottom: 0.5rem;">4.2 Vector Embeddings & Pinecone</h2>
+                    <p style="color: var(--muted-text);">Learn how to transform unstructured data into multi-dimensional vectors and store them for high-speed semantic retrieval.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        const playBtn = document.getElementById('demo-play-btn');
+        const overlay = document.getElementById('video-overlay');
+        const quizModal = document.getElementById('quiz-modal');
+
+        playBtn.addEventListener('click', () => {
+            playBtn.style.display = 'none';
+            overlay.style.opacity = '0.3';
+            
+            // Simulate video end and quiz popup after 2 seconds
+            setTimeout(() => {
+                quizModal.classList.add('active');
+            }, 2000);
+        });
+
+        function correctAnswer() {
+            quizModal.innerHTML = `
+                <h3 style="margin-bottom: 1.5rem; color: var(--cta-color);">Correct! +50 XP 🚀</h3>
+                <p style="margin-bottom: 2rem;">You've mastered the basics of state and side effects.</p>
+                <button class="btn btn-primary" onclick="window.location.href='tracks.html'">Continue Journey</button>
+            `;
+        }
+    </script>
+</body>
+</html>

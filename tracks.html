@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | Learning Tracks</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tracks-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        .filter-bar {
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn.active {
+            background: var(--cta-color);
+            color: #000;
+            border-color: var(--cta-color);
+        }
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 8rem;
+        }
+        .track-card {
+            background: var(--primary-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .track-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cta-color);
+        }
+        .track-card-img {
+            height: 200px;
+            background: #000;
+            overflow: hidden;
+        }
+        .track-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+        .track-card-content {
+            padding: 1.5rem;
+            flex: 1;
+        }
+        .track-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--cta-color);
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .track-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+        .track-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .module-status {
+            margin-left: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted-text);
+        }
+        .module-status.complete {
+            color: #22c55e;
+        }
+        .track-progress-status {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted-text);
+        }
+        .track-progress-status.complete {
+            color: #22c55e;
+        }
+        .topic-checklist {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .topic-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.5rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 999px;
+            font-size: 0.72rem;
+            color: var(--muted-text);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .topic-pill input[type="checkbox"] {
+            accent-color: #22c55e;
+        }
+    </style>
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+        </style>
+    </noscript>
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="tracks.html" class="active">Tracks</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="#" title="Coming soon">Roadmaps</a></li>
+                <li><a href="#" title="Coming soon">Academy</a></li>
+                <li><a href="#" title="Coming soon">Agents</a></li>
+                <li><a href="auth.html" class="btn btn-primary" id="nav-cta">Get Started</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <script>
+    (function() {
+        var token = localStorage.getItem('devscroll_token');
+        if (!token) {
+            window.location.href = 'auth.html?next=tracks.html';
+        } else {
+            var cta = document.getElementById('nav-cta');
+            if (cta) {
+                cta.textContent = 'Dashboard';
+                cta.href = 'tracks.html';
+                var logout = document.createElement('a');
+                logout.href = '#';
+                logout.textContent = 'Log out';
+                logout.style.cssText = 'margin-left:1rem;color:var(--muted-text);font-size:0.9rem;text-decoration:none;';
+                logout.onclick = function(e) { e.preventDefault(); localStorage.removeItem('devscroll_token'); window.location.href = 'index.html'; };
+                cta.parentElement.appendChild(logout);
+            }
+        }
+    })();
+    </script>
+
+    <main class="container">
+        <section class="tracks-hero">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Learning <span>Tracks</span></h1>
+            <p style="color: var(--muted-text); max-width: 600px; margin: 0 auto;">Curated paths designed to take you from fundamentals to professional mastery.</p>
+        </section>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Tracks</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="mobile">Mobile</button>
+            <button class="filter-btn" data-filter="backend">Backend</button>
+            <button class="filter-btn" data-filter="ai">AI & ML</button>
+            <button class="filter-btn" data-filter="devops">DevOps</button>
+            <button class="filter-btn" data-filter="security">Security</button>
+        </div>
+
+        <div class="tracks-grid">
+            <!-- Full Stack -->
+            <div class="track-card reveal" data-category="web">
+                <div class="track-card-img">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #0f2027, #203a43); display: flex; align-items: center; justify-content: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                </div>
+                <div class="track-card-content">
+                    <div class="badge-row">
+                        <span class="badge badge-senior">Senior Path</span>
+                        <span class="badge badge-new">T3 Stack</span>
+                    </div>
+                    <h3>Full-Stack Mastery</h3>
+                    <p style="color: var(--muted-text); margin-top: 0.5rem;">Production-grade architecture using Next.js 14, React Server Components, and the T3 stack.</p>
+                    
+                    <div class="syllabus-accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 1: The Modern Frontend
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Next.js 14 App Router & RSC</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• App Directory Structure • Server Components vs Client • Data Fetching & Streaming • Layouts & Templates</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://nextjs.org/docs/app" target="_blank" rel="noopener">Next.js App Router Docs</a> · <a href="https://www.youtube.com/watch?v=wm5gMKuwSYk" target="_blank" rel="noopener">RSC Deep Dive (Vercel)</a> · <a href="https://nextjs.org/learn" target="_blank" rel="noopener">Next.js Learn</a></div>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Advanced Tailwind & Design Systems</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• Component Patterns • Theme Configuration • Dark Mode • Responsive Design</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://tailwindcss.com/docs" target="_blank" rel="noopener">Tailwind Docs</a> · <a href="https://www.youtube.com/watch?v=pfaSUYaSgRo" target="_blank" rel="noopener">Design Systems with Tailwind</a> · <a href="https://ui.shadcn.com/docs" target="_blank" rel="noopener">shadcn/ui Patterns</a></div>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Form Validation with Zod</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• Schema Definition • Type Inference • Async Validation • Error Handling</div>
+                                        <span class="lesson-duration">20m</span>
+                                        <div class="lesson-resources"><a href="https://zod.dev" target="_blank" rel="noopener">Zod Docs</a> · <a href="https://react-hook-form.com/get-started" target="_blank" rel="noopener">React Hook Form</a> · <a href="https://www.youtube.com/watch?v=L6BE-U3oy80" target="_blank" rel="noopener">Zod + RHF Tutorial</a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 2: Type-Safe Backend
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Prisma ORM & PostgreSQL</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• Schema Modeling • Relations & Joins • Migrations • Query Optimization</div>
+                                        <span class="lesson-duration">55m</span>
+                                        <div class="lesson-resources"><a href="https://www.prisma.io/docs" target="_blank" rel="noopener">Prisma Docs</a> · <a href="https://www.youtube.com/watch?v=RebA5J-rlwg" target="_blank" rel="noopener">Prisma Crash Course</a> · <a href="https://www.postgresql.org/docs/current/" target="_blank" rel="noopener">PostgreSQL Official Docs</a></div>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>tRPC for Type-Safe APIs</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• Router Setup • Procedures & Queries • Input Validation • Error Types</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://trpc.io/docs" target="_blank" rel="noopener">tRPC Docs</a> · <a href="https://www.youtube.com/watch?v=2LYM8gf184U" target="_blank" rel="noopener">tRPC + Next.js Tutorial</a> · <a href="https://create.t3.gg/en/usage/trpc" target="_blank" rel="noopener">T3 Stack tRPC Guide</a></div>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Redis Caching Strategies</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• Cache Invalidation • Session Storage • Rate Limiting • Pub/Sub</div>
+                                        <span class="lesson-duration">25m</span>
+                                        <div class="lesson-resources"><a href="https://redis.io/docs/latest/" target="_blank" rel="noopener">Redis Docs</a> · <a href="https://www.youtube.com/watch?v=jgpVdJB2sKQ" target="_blank" rel="noopener">Redis Caching Patterns</a> · <a href="https://upstash.com/docs/redis/overall/getstarted" target="_blank" rel="noopener">Upstash Redis Guide</a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 3: Auth & Security
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>NextAuth.js Implementation</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• OAuth Providers • Credentials Auth • Session Management • JWT Strategy</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://authjs.dev/getting-started" target="_blank" rel="noopener">Auth.js Docs</a> · <a href="https://www.youtube.com/watch?v=w2h54xz6Ndw" target="_blank" rel="noopener">NextAuth.js Tutorial</a> · <a href="https://authjs.dev/guides/providers/oauth-provider" target="_blank" rel="noopener">OAuth Providers Guide</a></div>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>RBAC & Middleware Protection</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• Role Definitions • Permission Guards • Route Protection • API Security</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://nextjs.org/docs/app/building-your-application/routing/middleware" target="_blank" rel="noopener">Next.js Middleware Docs</a> · <a href="https://www.youtube.com/watch?v=tE2NE5c-4vk" target="_blank" rel="noopener">RBAC in Next.js</a> · <a href="https://casbin.org/docs/overview" target="_blank" rel="noopener">Casbin Authorization</a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 4: Performance & Scale
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>React Server Components Deep Dive</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• Server vs Client Boundaries • Data Serialization • Memory Management • Bundle Analysis</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023" target="_blank" rel="noopener">React RSC Explained</a> · <a href="https://www.youtube.com/watch?v=ytXM05PVcFU" target="_blank" rel="noopener">RSC from Scratch (Josh W Comeau)</a> · <a href="https://nextjs.org/docs/app/building-your-application/rendering/server-components" target="_blank" rel="noopener">Next.js RSC Docs</a></div>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Streaming & Suspense</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• Loading States • Error Boundaries • Fallback UI • Progressive Enhancement</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://react.dev/reference/react/Suspense" target="_blank" rel="noopener">React Suspense Docs</a> · <a href="https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming" target="_blank" rel="noopener">Next.js Streaming Guide</a> · <a href="https://www.youtube.com/watch?v=sWaM47sAlLQ" target="_blank" rel="noopener">Streaming UI Patterns</a></div>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Image Optimization & CDN</span></div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-text); margin-top: 0.25rem;">• next/image • Responsive Images • Lazy Loading • WebP/AVIF Formats</div>
+                                        <span class="lesson-duration">25m</span>
+                                        <div class="lesson-resources"><a href="https://nextjs.org/docs/app/building-your-application/optimizing/images" target="_blank" rel="noopener">Next.js Image Optimization</a> · <a href="https://web.dev/articles/serve-images-webp" target="_blank" rel="noopener">WebP Guide (web.dev)</a> · <a href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/" target="_blank" rel="noopener">CDN Fundamentals</a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 5: Testing & Quality
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Playwright E2E Testing</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Test Architecture • Page Object Model • API Mocking • CI Integration</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://playwright.dev/docs/intro" target="_blank" rel="noopener">Playwright Docs</a> · <a href="https://www.youtube.com/watch?v=wGr5rz8WKNE" target="_blank" rel="noopener">Playwright Crash Course</a> · <a href="https://playwright.dev/docs/pom" target="_blank" rel="noopener">Page Object Model</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Vitest & Component Testing</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Unit Test Patterns • Component Mounts • Snapshot Testing • Coverage Reports</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://vitest.dev/guide/" target="_blank" rel="noopener">Vitest Docs</a> · <a href="https://testing-library.com/docs/react-testing-library/intro/" target="_blank" rel="noopener">React Testing Library</a> · <a href="https://www.youtube.com/watch?v=FgnxcUQ5vho" target="_blank" rel="noopener">Vitest Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>CI/CD Pipeline Setup</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• GitHub Actions Workflow • Build Caching • Deploy Gates • Environment Secrets</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://docs.github.com/en/actions/writing-workflows" target="_blank" rel="noopener">GitHub Actions Docs</a> · <a href="https://www.youtube.com/watch?v=R8_veQiYBjI" target="_blank" rel="noopener">CI/CD with GitHub Actions</a> · <a href="https://docs.github.com/en/actions/use-cases-and-examples/deploying/deploying-nodejs-to-azure" target="_blank" rel="noopener">Deploy Node Apps</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="track-card reveal" data-category="mobile">
+                <div class="track-card-img">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                    </div>
+                </div>
+                <div class="track-card-content">
+                    <div class="badge-row">
+                        <span class="badge badge-mid">Mid-Senior</span>
+                        <span class="badge badge-new">Expo</span>
+                    </div>
+                    <h3>Native Engineering</h3>
+                    <p style="color: var(--muted-text); margin-top: 0.5rem;">Master the React Native ecosystem, Native Modules, and high-performance Expo workflows.</p>
+                    
+                    <div class="syllabus-accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 1: Architecture & Expo
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Expo Router & Navigation</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• File-based Routing • Stack & Tab Navigators • Deep Linking • Auth Guards</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://docs.expo.dev/router/introduction/" target="_blank" rel="noopener">Expo Router Docs</a> · <a href="https://www.youtube.com/watch?v=rIYzLhkG9TA" target="_blank" rel="noopener">Expo Router Tutorial</a> · <a href="https://reactnavigation.org/docs/getting-started" target="_blank" rel="noopener">React Navigation Docs</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Shared Element Transitions</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Reanimated 3 Basics • Layout Animations • Hero Transitions • Gesture Handlers</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/your-first-animation" target="_blank" rel="noopener">Reanimated 3 Docs</a> · <a href="https://www.youtube.com/watch?v=yz9E10Es28I" target="_blank" rel="noopener">Reanimated Crash Course</a> · <a href="https://docs.swmansion.com/react-native-gesture-handler/docs/" target="_blank" rel="noopener">Gesture Handler Docs</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 2: Native Capabilities
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>JSI & Native Modules</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• JSI Architecture • Turbo Modules • Codegen • C++ Bridge</div>
+                                        <span class="lesson-duration">60m</span>
+                                        <div class="lesson-resources"><a href="https://reactnative.dev/docs/the-new-architecture/landing-page" target="_blank" rel="noopener">New Architecture Docs</a> · <a href="https://www.youtube.com/watch?v=UcqRXTriUVI" target="_blank" rel="noopener">JSI Explained (Chain React)</a> · <a href="https://shopify.engineering/react-native-performance-ship-app-every-week" target="_blank" rel="noopener">Shopify RN Performance</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Biometrics & Secure Store</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Face ID / Touch ID • expo-secure-store • Keychain API • Token Encryption</div>
+                                        <span class="lesson-duration">25m</span>
+                                        <div class="lesson-resources"><a href="https://docs.expo.dev/versions/latest/sdk/local-authentication/" target="_blank" rel="noopener">expo-local-authentication</a> · <a href="https://docs.expo.dev/versions/latest/sdk/securestore/" target="_blank" rel="noopener">expo-secure-store Docs</a> · <a href="https://www.youtube.com/watch?v=hSBHMcHkHJI" target="_blank" rel="noopener">Biometrics in Expo</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 3: Deployment (EAS)
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>EAS Build & Internal Distribution</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Build Profiles • Credentials Management • Internal TestFlight • Ad Hoc Builds</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://docs.expo.dev/build/introduction/" target="_blank" rel="noopener">EAS Build Docs</a> · <a href="https://www.youtube.com/watch?v=LUFHXsBcW6w" target="_blank" rel="noopener">EAS Build Tutorial</a> · <a href="https://docs.expo.dev/build/internal-distribution/" target="_blank" rel="noopener">Internal Distribution Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Over-the-Air (OTA) Updates</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• expo-updates • Channel Strategy • Rollback • Staged Rollout</div>
+                                        <span class="lesson-duration">20m</span>
+                                        <div class="lesson-resources"><a href="https://docs.expo.dev/eas-update/introduction/" target="_blank" rel="noopener">EAS Update Docs</a> · <a href="https://www.youtube.com/watch?v=Si6oIa_OGrc" target="_blank" rel="noopener">OTA Updates with Expo</a> · <a href="https://docs.expo.dev/eas-update/deployment-patterns/" target="_blank" rel="noopener">Deployment Patterns</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 4: State Management
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Zustand for Global State</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Store Setup • Slices Pattern • Devtools • Persist Middleware</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://docs.pmnd.rs/zustand/getting-started/introduction" target="_blank" rel="noopener">Zustand Docs</a> · <a href="https://www.youtube.com/watch?v=_ngCLZ5Iz-0" target="_blank" rel="noopener">Zustand Crash Course</a> · <a href="https://docs.pmnd.rs/zustand/integrations/persisting-store-data" target="_blank" rel="noopener">Persist Middleware Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>React Query for Server State</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Query Keys • Mutations • Optimistic Updates • Infinite Queries</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://tanstack.com/query/latest/docs/framework/react/overview" target="_blank" rel="noopener">TanStack Query Docs</a> · <a href="https://www.youtube.com/watch?v=r8Dg0KVnfMA" target="_blank" rel="noopener">React Query Tutorial</a> · <a href="https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates" target="_blank" rel="noopener">Optimistic Updates Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Offline-First Architecture</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• WatermelonDB • Sync Strategies • Conflict Resolution • Background Sync</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://watermelondb.dev/docs/" target="_blank" rel="noopener">WatermelonDB Docs</a> · <a href="https://www.youtube.com/watch?v=uFvHURTRLxQ" target="_blank" rel="noopener">Offline-First React Native</a> · <a href="https://docs.expo.dev/versions/latest/sdk/sqlite/" target="_blank" rel="noopener">expo-sqlite Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 5: Performance
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Hermes Engine Deep Dive</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Bytecode Compilation • Memory Model • GC Tuning • Startup Time</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://reactnative.dev/docs/hermes" target="_blank" rel="noopener">Hermes Engine Docs</a> · <a href="https://engineering.fb.com/2019/07/12/android/hermes/" target="_blank" rel="noopener">Hermes at Facebook (Blog)</a> · <a href="https://www.youtube.com/watch?v=lMH3SSBqBaI" target="_blank" rel="noopener">Hermes Deep Dive Talk</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Memory Optimization</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Heap Profiling • FlatList Optimization • Image Caching • Leak Detection</div>
+                                        <span class="lesson-duration">25m</span>
+                                        <div class="lesson-resources"><a href="https://reactnative.dev/docs/performance" target="_blank" rel="noopener">RN Performance Docs</a> · <a href="https://shopify.engineering/react-native-performance-ship-app-every-week" target="_blank" rel="noopener">Shopify RN Performance</a> · <a href="https://www.youtube.com/watch?v=1D417hUS2mY" target="_blank" rel="noopener">Memory Leaks in RN</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>List Performance & FlashList</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• FlashList vs FlatList • RecyclerListView • Windowing • Blur Placeholders</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://shopify.github.io/flash-list/docs/" target="_blank" rel="noopener">FlashList Docs</a> · <a href="https://www.youtube.com/watch?v=F0T-XuKv1Y4" target="_blank" rel="noopener">FlashList vs FlatList</a> · <a href="https://reactnative.dev/docs/optimizing-flatlist-configuration" target="_blank" rel="noopener">FlatList Optimization Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="track-card reveal" data-category="ai">
+                <div class="track-card-img">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #1e293b, #4f46e5); display: flex; align-items: center; justify-content: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Z"></path><path d="M12 6v6l4 2"></path></svg>
+                    </div>
+                </div>
+                <div class="track-card-content">
+                    <div class="badge-row">
+                        <span class="badge badge-staff">Lead Path</span>
+                        <span class="badge badge-new">RAG</span>
+                    </div>
+                    <h3>AI Engineering for Devs</h3>
+                    <p style="color: var(--muted-text); margin-top: 0.5rem;">Building production-ready AI apps with RAG, Vector DBs, and Agentic Workflows.</p>
+                    
+                    <div class="syllabus-accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 1: LLM Orchestration
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Prompt Engineering & Tuning</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• System Prompts • Few-Shot Examples • Chain-of-Thought • Temperature Control</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI Prompt Engineering Guide</a> · <a href="https://www.promptingguide.ai/" target="_blank" rel="noopener">Prompting Guide</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic Prompt Engineering</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Function Calling & Tool Use</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Tool Definitions • Parallel Calls • Error Handling • Structured Outputs</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://platform.openai.com/docs/guides/function-calling" target="_blank" rel="noopener">OpenAI Function Calling</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use/overview" target="_blank" rel="noopener">Anthropic Tool Use</a> · <a href="https://www.youtube.com/watch?v=pq34V_V5j18" target="_blank" rel="noopener">Function Calling Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 2: RAG & Vector Data
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Pinecone & Vector Embeddings</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Embedding Models • Index Setup • Similarity Search • Metadata Filtering</div>
+                                        <span class="lesson-duration">50m</span>
+                                        <div class="lesson-resources"><a href="https://docs.pinecone.io/guides/get-started/overview" target="_blank" rel="noopener">Pinecone Docs</a> · <a href="https://platform.openai.com/docs/guides/embeddings" target="_blank" rel="noopener">OpenAI Embeddings Guide</a> · <a href="https://www.youtube.com/watch?v=ySus5ZS0b94" target="_blank" rel="noopener">Vector Embeddings Explained</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Semantic Search Strategies</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Hybrid Search • Re-ranking • Query Expansion • Chunking Strategies</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://www.sbert.net/examples/applications/semantic-search/README.html" target="_blank" rel="noopener">Sentence Transformers Search</a> · <a href="https://docs.cohere.com/docs/reranking" target="_blank" rel="noopener">Cohere Re-ranking Guide</a> · <a href="https://www.youtube.com/watch?v=qN_2fnOPY-M" target="_blank" rel="noopener">Advanced RAG Techniques</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 3: Agentic Systems
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>LangChain vs LangGraph</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Chain Types • Graph State • Checkpointing • Human-in-the-Loop</div>
+                                        <span class="lesson-duration">60m</span>
+                                        <div class="lesson-resources"><a href="https://python.langchain.com/docs/introduction/" target="_blank" rel="noopener">LangChain Docs</a> · <a href="https://langchain-ai.github.io/langgraph/" target="_blank" rel="noopener">LangGraph Docs</a> · <a href="https://www.youtube.com/watch?v=PqS1kib7RTM" target="_blank" rel="noopener">LangGraph Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Auto-GPT Architectures</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Task Planning • Memory Types • Tool Integration • Loop Control</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://docs.anthropic.com/en/docs/build-with-claude/agents" target="_blank" rel="noopener">Agentic Systems (Anthropic)</a> · <a href="https://www.youtube.com/watch?v=sal78ACtGTc" target="_blank" rel="noopener">Building AI Agents</a> · <a href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank" rel="noopener">LLM Powered Agents (Lilian Weng)</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 4: Fine-tuning & Evaluation
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>LoRA & QLoRA Fine-tuning</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• PEFT Setup • Dataset Preparation • Training Loop • VRAM Optimization</div>
+                                        <span class="lesson-duration">55m</span>
+                                        <div class="lesson-resources"><a href="https://huggingface.co/docs/peft/main/en/conceptual_guides/lora" target="_blank" rel="noopener">HuggingFace LoRA Guide</a> · <a href="https://www.youtube.com/watch?v=Us5ZFp16PaU" target="_blank" rel="noopener">QLoRA Fine-tuning Tutorial</a> · <a href="https://arxiv.org/abs/2305.14314" target="_blank" rel="noopener">QLoRA Paper (arXiv)</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>LLM Evaluation Metrics</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• BLEU/ROUGE • G-Eval • Hallucination Checks • Benchmark Suites</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://docs.confident-ai.com/docs/metrics-llm-evals" target="_blank" rel="noopener">DeepEval LLM Metrics</a> · <a href="https://huggingface.co/docs/evaluate/en/index" target="_blank" rel="noopener">HuggingFace Evaluate</a> · <a href="https://www.youtube.com/watch?v=d-zA6Du4G1E" target="_blank" rel="noopener">LLM Evaluation Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>RLHF & DPO</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Reward Modeling • PPO Training • DPO Dataset Format • Preference Data</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://huggingface.co/blog/rlhf" target="_blank" rel="noopener">RLHF Explained (HuggingFace)</a> · <a href="https://huggingface.co/docs/trl/en/dpo_trainer" target="_blank" rel="noopener">DPO Trainer Guide</a> · <a href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noopener">DPO Paper (arXiv)</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 5: Production Deployment
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>OpenAI/Anthropic API Integration</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• SDK Setup • Streaming Responses • Rate Limit Handling • Cost Tracking</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://platform.openai.com/docs/libraries" target="_blank" rel="noopener">OpenAI SDK Docs</a> · <a href="https://docs.anthropic.com/en/api/getting-started" target="_blank" rel="noopener">Anthropic API Docs</a> · <a href="https://platform.openai.com/docs/guides/streaming" target="_blank" rel="noopener">Streaming Responses Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Self-hosted LLMs (vLLM)</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• vLLM Server • Quantization • Batching • GPU Memory Management</div>
+                                        <span class="lesson-duration">50m</span>
+                                        <div class="lesson-resources"><a href="https://docs.vllm.ai/en/latest/" target="_blank" rel="noopener">vLLM Docs</a> · <a href="https://ollama.com/docs/" target="_blank" rel="noopener">Ollama Docs</a> · <a href="https://www.youtube.com/watch?v=MQLarCrdcEg" target="_blank" rel="noopener">Self-hosting LLMs Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Cost Optimization & Caching</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Prompt Caching • Semantic Cache • Token Counting • Model Routing</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching" target="_blank" rel="noopener">Anthropic Prompt Caching</a> · <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener">OpenAI Tokenizer</a> · <a href="https://www.youtube.com/watch?v=oBSHMMBUFZo" target="_blank" rel="noopener">LLM Cost Optimization</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="track-card reveal" data-category="backend">
+                <div class="track-card-img">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #0f172a, #1e293b); display: flex; align-items: center; justify-content: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.5"><path d="M2 20h20"></path><path d="M7 2h10l3 18H4L7 2Z"></path></svg>
+                    </div>
+                </div>
+                <div class="track-card-content">
+                    <div class="badge-row">
+                        <span class="badge badge-staff">Staff+ Path</span>
+                        <span class="badge badge-new">Distributed</span>
+                    </div>
+                    <h3>System Design & Scale</h3>
+                    <p style="color: var(--muted-text); margin-top: 0.5rem;">Designing resilient distributed systems that handle millions of requests.</p>
+                    
+                    <div class="syllabus-accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 1: Core Architecture
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Monolith vs Microservices</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Decomposition Strategies • Service Boundaries • Communication Patterns • Migration Path</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://microservices.io/patterns/index.html" target="_blank" rel="noopener">Microservices Patterns</a> · <a href="https://martinfowler.com/bliki/MonolithFirst.html" target="_blank" rel="noopener">Monolith First (Martin Fowler)</a> · <a href="https://www.youtube.com/watch?v=rv4LlmLmVWk" target="_blank" rel="noopener">Microservices Explained</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Event-Driven with Kafka</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Topic Design • Consumer Groups • Exactly-Once Delivery • Schema Registry</div>
+                                        <span class="lesson-duration">55m</span>
+                                        <div class="lesson-resources"><a href="https://kafka.apache.org/documentation/" target="_blank" rel="noopener">Kafka Docs</a> · <a href="https://www.confluent.io/learn/apache-kafka/" target="_blank" rel="noopener">Confluent Kafka Guide</a> · <a href="https://www.youtube.com/watch?v=Ch5VhJzaoaI" target="_blank" rel="noopener">Kafka Crash Course</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 2: Data & Consistency
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>ACID vs BASE Patterns</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• CAP Theorem • Eventual Consistency • Sagas • Two-Phase Commit</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://www.databricks.com/glossary/acid-transactions" target="_blank" rel="noopener">ACID Transactions Explained</a> · <a href="https://microservices.io/patterns/data/saga.html" target="_blank" rel="noopener">Saga Pattern</a> · <a href="https://www.youtube.com/watch?v=pomxJOFVcQs" target="_blank" rel="noopener">CAP Theorem Explained</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Database Sharding & Replication</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Horizontal vs Vertical • Shard Keys • Replica Lag • Read Replicas</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://www.mongodb.com/docs/manual/sharding/" target="_blank" rel="noopener">MongoDB Sharding Guide</a> · <a href="https://www.postgresql.org/docs/current/high-availability.html" target="_blank" rel="noopener">PostgreSQL Replication Docs</a> · <a href="https://www.youtube.com/watch?v=hdxdhCpgYo8" target="_blank" rel="noopener">Database Sharding Explained</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 3: Observability
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Prometheus & Grafana Setup</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Metric Types • PromQL • Dashboard Design • Alert Rules</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://prometheus.io/docs/introduction/overview/" target="_blank" rel="noopener">Prometheus Docs</a> · <a href="https://grafana.com/docs/grafana/latest/" target="_blank" rel="noopener">Grafana Docs</a> · <a href="https://www.youtube.com/watch?v=h4Sl21AKiDg" target="_blank" rel="noopener">Prometheus & Grafana Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Distributed Tracing (OpenTelemetry)</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Span Context • Instrumentation • Sampling • Jaeger/Tempo</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://opentelemetry.io/docs/" target="_blank" rel="noopener">OpenTelemetry Docs</a> · <a href="https://www.jaegertracing.io/docs/1.6/getting-started/" target="_blank" rel="noopener">Jaeger Getting Started</a> · <a href="https://www.youtube.com/watch?v=r8UvWSX3179" target="_blank" rel="noopener">OpenTelemetry Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 4: Scaling Patterns
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Horizontal vs Vertical Scaling</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Stateless Design • Session Affinity • Auto-scaling • Cost Models</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://aws.amazon.com/blogs/architecture/scale-your-web-application-one-step-at-a-time/" target="_blank" rel="noopener">AWS Scaling Guide</a> · <a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/" target="_blank" rel="noopener">Kubernetes HPA Docs</a> · <a href="https://www.youtube.com/watch?v=xpDnVSmNFX0" target="_blank" rel="noopener">Scaling Strategies Explained</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Load Balancing Strategies</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Round Robin • Least Connections • Consistent Hashing • Health Checks</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://nginx.org/en/docs/http/load_balancing.html" target="_blank" rel="noopener">NGINX Load Balancing</a> · <a href="https://aws.amazon.com/elasticloadbalancing/features/" target="_blank" rel="noopener">AWS ALB Features</a> · <a href="https://www.youtube.com/watch?v=sCR3SAVdos0" target="_blank" rel="noopener">Load Balancing Algorithms</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Caching Layers (Redis)</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Cache-Aside • Write-Through • TTL Strategy • Redis Cluster</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://redis.io/docs/latest/develop/use/patterns/" target="_blank" rel="noopener">Redis Patterns Docs</a> · <a href="https://aws.amazon.com/caching/best-practices/" target="_blank" rel="noopener">AWS Caching Best Practices</a> · <a href="https://www.youtube.com/watch?v=jgpVdJB2sKQ" target="_blank" rel="noopener">Redis Caching Strategies</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 5: Real-World Case Studies
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Netflix Architecture</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Chaos Engineering • Edge Caching • Microservices at Scale • Hystrix Patterns</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://netflixtechblog.com/" target="_blank" rel="noopener">Netflix Tech Blog</a> · <a href="https://principlesofchaos.org/" target="_blank" rel="noopener">Principles of Chaos Engineering</a> · <a href="https://www.youtube.com/watch?v=CZ3wIuvmHeM" target="_blank" rel="noopener">Netflix Architecture Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Uber's Real-Time Systems</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Geospatial Indexing • Dispatch Engine • Trip State Machine • Surge Pricing</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://www.uber.com/en-US/blog/engineering/" target="_blank" rel="noopener">Uber Engineering Blog</a> · <a href="https://www.youtube.com/watch?v=lsKU38RKQSo" target="_blank" rel="noopener">Uber's Real-time Architecture</a> · <a href="https://eng.uber.com/real-time-push-platform/" target="_blank" rel="noopener">Uber Real-time Push Platform</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Design a URL Shortener</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Hash Strategy • Base62 Encoding • Cache Warming • Analytics Pipeline</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://bytebytego.com/courses/system-design-interview/design-a-url-shortener" target="_blank" rel="noopener">ByteByteGo URL Shortener</a> · <a href="https://www.youtube.com/watch?v=JQDHz72OA3c" target="_blank" rel="noopener">URL Shortener System Design</a> · <a href="https://highscalability.com/designing-a-url-shortening-service-like-tinyurl/" target="_blank" rel="noopener">URL Shortener Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="track-card reveal" data-category="devops">
+                <div class="track-card-img">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #0f172a, #0891b2); display: flex; align-items: center; justify-content: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+                    </div>
+                </div>
+                <div class="track-card-content">
+                    <div class="badge-row">
+                        <span class="badge badge-senior">Mid-Senior</span>
+                        <span class="badge badge-new">CI/CD</span>
+                    </div>
+                    <h3>DevOps & Platform Engineering</h3>
+                    <p style="color: var(--muted-text); margin-top: 0.5rem;">Master the modern infrastructure stack: Kubernetes, Terraform, and GitOps.</p>
+                    
+                    <div class="syllabus-accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 1: Container Orchestration
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Docker Deep Dive</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Multi-Stage Builds • Layer Caching • Compose Networks • Security Scanning</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://docs.docker.com/get-started/docker-concepts/building-images/multi-stage-builds/" target="_blank" rel="noopener">Docker Multi-Stage Builds</a> · <a href="https://docs.docker.com/compose/" target="_blank" rel="noopener">Docker Compose Docs</a> · <a href="https://www.youtube.com/watch?v=gAkwW2tuIqE" target="_blank" rel="noopener">Docker Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Kubernetes Fundamentals</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Pods & Deployments • Services & Ingress • ConfigMaps & Secrets • RBAC</div>
+                                        <span class="lesson-duration">60m</span>
+                                        <div class="lesson-resources"><a href="https://kubernetes.io/docs/home/" target="_blank" rel="noopener">Kubernetes Docs</a> · <a href="https://www.youtube.com/watch?v=X48VuDVv0do" target="_blank" rel="noopener">Kubernetes Crash Course</a> · <a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/" target="_blank" rel="noopener">Kubernetes Basics Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Helm Charts & Kustomize</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Chart Structure • Values Files • Overlays • Release Management</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://helm.sh/docs/" target="_blank" rel="noopener">Helm Docs</a> · <a href="https://kubectl.docs.kubernetes.io/references/kustomize/" target="_blank" rel="noopener">Kustomize Reference</a> · <a href="https://www.youtube.com/watch?v=fy8SHvNZGeE" target="_blank" rel="noopener">Helm & Kustomize Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 2: Infrastructure as Code
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Terraform & OpenTofu</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Resource Graph • State Management • Modules • Remote Backends</div>
+                                        <span class="lesson-duration">55m</span>
+                                        <div class="lesson-resources"><a href="https://developer.hashicorp.com/terraform/docs" target="_blank" rel="noopener">Terraform Docs</a> · <a href="https://opentofu.org/docs/" target="_blank" rel="noopener">OpenTofu Docs</a> · <a href="https://www.youtube.com/watch?v=tomUWcQ0P3k" target="_blank" rel="noopener">Terraform Crash Course</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>AWS/GCP/Azure Foundations</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• IAM Roles • VPC Design • Managed Services • Cost Tagging</div>
+                                        <span class="lesson-duration">50m</span>
+                                        <div class="lesson-resources"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html" target="_blank" rel="noopener">AWS IAM Guide</a> · <a href="https://cloud.google.com/docs/get-started" target="_blank" rel="noopener">GCP Getting Started</a> · <a href="https://learn.microsoft.com/en-us/azure/architecture/guide/" target="_blank" rel="noopener">Azure Architecture Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Secret Management (Vault)</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Dynamic Secrets • PKI Engine • Vault Agent • Secret Rotation</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://developer.hashicorp.com/vault/docs" target="_blank" rel="noopener">Vault Docs</a> · <a href="https://developer.hashicorp.com/vault/tutorials/getting-started" target="_blank" rel="noopener">Vault Getting Started</a> · <a href="https://www.youtube.com/watch?v=NcFMGLjDqTo" target="_blank" rel="noopener">Vault Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 3: GitOps & CI/CD
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>ArgoCD & Flux</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• App of Apps • Sync Policies • Drift Detection • Progressive Delivery</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://argo-cd.readthedocs.io/en/stable/" target="_blank" rel="noopener">ArgoCD Docs</a> · <a href="https://fluxcd.io/flux/concepts/" target="_blank" rel="noopener">Flux Concepts</a> · <a href="https://www.youtube.com/watch?v=MeU5_k9ssrs" target="_blank" rel="noopener">ArgoCD Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>GitHub Actions & GitLab CI</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Workflow Triggers • Reusable Workflows • Self-hosted Runners • OIDC Auth</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">GitHub Actions Docs</a> · <a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener">GitLab CI Docs</a> · <a href="https://www.youtube.com/watch?v=R8_veQiYBjI" target="_blank" rel="noopener">GitHub Actions Crash Course</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Observability Stack</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Loki Log Aggregation • Tempo Tracing • Grafana Dashboards • SLO Alerting</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://grafana.com/docs/loki/latest/" target="_blank" rel="noopener">Grafana Loki Docs</a> · <a href="https://grafana.com/docs/tempo/latest/" target="_blank" rel="noopener">Grafana Tempo Docs</a> · <a href="https://www.youtube.com/watch?v=h_GGd7HfKQ8" target="_blank" rel="noopener">Grafana LGTM Stack Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 4: Cloud Platforms
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>AWS EKS & Fargate</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Node Groups • Spot Instances • IAM for SA • ALB Controller</div>
+                                        <span class="lesson-duration">50m</span>
+                                        <div class="lesson-resources"><a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html" target="_blank" rel="noopener">AWS EKS User Guide</a> · <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html" target="_blank" rel="noopener">AWS Fargate Docs</a> · <a href="https://www.youtube.com/watch?v=p6xDCz00TxU" target="_blank" rel="noopener">EKS Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>GCP Cloud Run & GKE</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Autopilot Mode • Workload Identity • Binary Authorization • Artifact Registry</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://cloud.google.com/run/docs" target="_blank" rel="noopener">Cloud Run Docs</a> · <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview" target="_blank" rel="noopener">GKE Overview</a> · <a href="https://www.youtube.com/watch?v=1hObZ_LnSFg" target="_blank" rel="noopener">Cloud Run Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Multi-Cloud Strategy</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Abstraction Layers • Failover Design • Cost Arbitrage • Vendor Lock-in</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://cloud.google.com/architecture/framework/reliability/design-for-redundancy" target="_blank" rel="noopener">Multi-region Redundancy</a> · <a href="https://www.finops.org/introduction/what-is-finops/" target="_blank" rel="noopener">FinOps for Multi-Cloud</a> · <a href="https://www.youtube.com/watch?v=8SLO0VBflt4" target="_blank" rel="noopener">Multi-Cloud Architecture</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 5: Platform Engineering
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Internal Developer Platform</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Golden Paths • Self-Service Templates • Paved Roads • Dev Portals</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://internaldeveloperplatform.org/what-is-an-internal-developer-platform/" target="_blank" rel="noopener">What is an IDP?</a> · <a href="https://platformengineering.org/blog/what-is-platform-engineering" target="_blank" rel="noopener">Platform Engineering Guide</a> · <a href="https://www.youtube.com/watch?v=ghzsBm8vOms" target="_blank" rel="noopener">IDP Architecture Talk</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Backstage & Developer Portal</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Catalog Setup • TechDocs • Scaffolder Templates • Plugin Development</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://backstage.io/docs/overview/what-is-backstage" target="_blank" rel="noopener">Backstage Docs</a> · <a href="https://backstage.io/docs/getting-started/" target="_blank" rel="noopener">Backstage Getting Started</a> · <a href="https://www.youtube.com/watch?v=1XtJ5FAOjPk" target="_blank" rel="noopener">Backstage in 1 Hour</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Self-Service Infrastructure</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Service Catalog • Approval Workflows • Policy as Code • Cost Showback</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://www.openpolicyagent.org/docs/latest/" target="_blank" rel="noopener">Open Policy Agent Docs</a> · <a href="https://developer.hashicorp.com/sentinel/docs" target="_blank" rel="noopener">HashiCorp Sentinel (Policy as Code)</a> · <a href="https://www.youtube.com/watch?v=4MLBpBqZmpM" target="_blank" rel="noopener">Policy as Code Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="track-card reveal" data-category="security">
+                <div class="track-card-img">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #1e1b4b, #4c1d95); display: flex; align-items: center; justify-content: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path></svg>
+                    </div>
+                </div>
+                <div class="track-card-content">
+                    <div class="badge-row">
+                        <span class="badge badge-staff">All Levels</span>
+                        <span class="badge badge-new">AppSec</span>
+                    </div>
+                    <h3>Application Security</h3>
+                    <p style="color: var(--muted-text); margin-top: 0.5rem;">Build secure applications from the ground up. OWASP Top 10, threat modeling, and more.</p>
+                    
+                    <div class="syllabus-accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 1: Security Fundamentals
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>OWASP Top 10 Deep Dive</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Injection Attacks • Broken Auth • IDOR • Security Misconfig</div>
+                                        <span class="lesson-duration">60m</span>
+                                        <div class="lesson-resources"><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener">OWASP Top 10</a> · <a href="https://portswigger.net/web-security/learning-paths/owasp-top-10" target="_blank" rel="noopener">PortSwigger OWASP Labs</a> · <a href="https://www.youtube.com/watch?v=ravRMDWMpvo" target="_blank" rel="noopener">OWASP Top 10 Explained</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Secure Coding Practices</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Input Sanitization • Output Encoding • Parameterized Queries • Least Privilege</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/" target="_blank" rel="noopener">OWASP Secure Coding Guide</a> · <a href="https://cheatsheetseries.owasp.org/" target="_blank" rel="noopener">OWASP Cheat Sheet Series</a> · <a href="https://www.youtube.com/watch?v=CrQHSf-mVd0" target="_blank" rel="noopener">Secure Coding Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Input Validation & Sanitization</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Allowlisting vs Blocklisting • HTML Encoding • File Upload Validation • Regex Safety</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html" target="_blank" rel="noopener">Input Validation Cheat Sheet</a> · <a href="https://portswigger.net/web-security/file-upload" target="_blank" rel="noopener">File Upload Vulnerabilities</a> · <a href="https://www.youtube.com/watch?v=KHwVjzGs6Bg" target="_blank" rel="noopener">Input Validation Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 2: Authentication & AuthZ
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>OAuth 2.0 & OIDC</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Authorization Code Flow • PKCE • Token Scopes • Refresh Token Rotation</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://oauth.net/2/" target="_blank" rel="noopener">OAuth 2.0 Spec</a> · <a href="https://openid.net/developers/how-connect-works/" target="_blank" rel="noopener">OIDC Explained</a> · <a href="https://www.youtube.com/watch?v=t18YB3xDfXI" target="_blank" rel="noopener">OAuth 2.0 & OIDC Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>JWT & Token Security</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Algorithm Selection • Claims Validation • Token Revocation • Short Expiry</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://jwt.io/introduction" target="_blank" rel="noopener">JWT Introduction</a> · <a href="https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html" target="_blank" rel="noopener">JWT Security Cheat Sheet</a> · <a href="https://www.youtube.com/watch?v=7ozQLeFJpqs" target="_blank" rel="noopener">JWT Security Best Practices</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>RBAC & ABAC Patterns</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Role Definitions • Permission Matrices • Policy Enforcement • Audit Logs</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://www.openpolicyagent.org/docs/latest/rbac/" target="_blank" rel="noopener">OPA RBAC Guide</a> · <a href="https://casbin.org/docs/overview" target="_blank" rel="noopener">Casbin Authorization</a> · <a href="https://www.youtube.com/watch?v=jI0j3Nt3-rg" target="_blank" rel="noopener">RBAC vs ABAC Explained</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 3: Threat Modeling
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>STRIDE & PASTA</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Data Flow Diagrams • Threat Enumeration • Risk Scoring • Mitigations</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats" target="_blank" rel="noopener">STRIDE Threat Modeling (Microsoft)</a> · <a href="https://owasp.org/www-community/Threat_Modeling" target="_blank" rel="noopener">OWASP Threat Modeling</a> · <a href="https://www.youtube.com/watch?v=GqmQg-cszw4" target="_blank" rel="noopener">Threat Modeling Tutorial</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>SAST/DAST Integration</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Semgrep Rules • ZAP Scanning • CI Gate Integration • False Positive Triage</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://semgrep.dev/docs/" target="_blank" rel="noopener">Semgrep Docs</a> · <a href="https://www.zaproxy.org/docs/" target="_blank" rel="noopener">OWASP ZAP Docs</a> · <a href="https://www.youtube.com/watch?v=4zJ9KGQdepw" target="_blank" rel="noopener">SAST & DAST in CI/CD</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Incident Response</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Detection & Triage • Containment • Root Cause Analysis • Post-Mortem</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://www.sans.org/media/score/504-incident-response-cycle.pdf" target="_blank" rel="noopener">SANS Incident Response Cycle</a> · <a href="https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final" target="_blank" rel="noopener">NIST IR Guide (SP 800-61)</a> · <a href="https://www.youtube.com/watch?v=rEBfTe1X5p4" target="_blank" rel="noopener">Incident Response Process</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 4: API Security
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>REST API Security</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Auth Header Standards • CORS Policy • Schema Validation • Mass Assignment</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://owasp.org/www-project-api-security/" target="_blank" rel="noopener">OWASP API Security Top 10</a> · <a href="https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html" target="_blank" rel="noopener">REST Security Cheat Sheet</a> · <a href="https://www.youtube.com/watch?v=_5k2HUMFSTE" target="_blank" rel="noopener">API Security Best Practices</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>GraphQL Security</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Query Depth Limiting • Introspection Control • Batching Attacks • Field Authorization</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html" target="_blank" rel="noopener">OWASP GraphQL Cheat Sheet</a> · <a href="https://graphql.org/learn/authorization/" target="_blank" rel="noopener">GraphQL Authorization Guide</a> · <a href="https://www.youtube.com/watch?v=RXgQZTzYIp8" target="_blank" rel="noopener">GraphQL Security Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Rate Limiting & Throttling</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Token Bucket • Sliding Window • Per-User Limits • DDoS Mitigations</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://redis.io/glossary/rate-limiting/" target="_blank" rel="noopener">Redis Rate Limiting Guide</a> · <a href="https://cheatsheetseries.owasp.org/cheatsheets/Denial_of_Service_Cheat_Sheet.html" target="_blank" rel="noopener">OWASP DoS Prevention</a> · <a href="https://www.youtube.com/watch?v=mhUQe4BKZXs" target="_blank" rel="noopener">Rate Limiting Algorithms</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 5: Security Operations
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>SIEM & Log Analysis</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Log Normalization • Correlation Rules • Alert Fatigue • MITRE ATT&CK</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://attack.mitre.org/" target="_blank" rel="noopener">MITRE ATT&CK Framework</a> · <a href="https://www.elastic.co/security/siem" target="_blank" rel="noopener">Elastic SIEM Guide</a> · <a href="https://www.youtube.com/watch?v=8T0QRr3tMKg" target="_blank" rel="noopener">SIEM Fundamentals</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Vulnerability Management</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• CVE Triage • CVSS Scoring • Patch SLAs • Dependency Scanning</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NIST NVD (CVE Database)</a> · <a href="https://docs.snyk.io/getting-started" target="_blank" rel="noopener">Snyk Dependency Scanning</a> · <a href="https://www.youtube.com/watch?v=M7-yMGPpBX8" target="_blank" rel="noopener">Vulnerability Management Guide</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Penetration Testing</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Recon Phase • Exploitation • Privilege Escalation • Report Writing</div>
+                                        <span class="lesson-duration">50m</span>
+                                        <div class="lesson-resources"><a href="https://portswigger.net/web-security/all-labs" target="_blank" rel="noopener">PortSwigger Web Security Labs</a> · <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener">OWASP Testing Guide</a> · <a href="https://www.youtube.com/watch?v=3FNYvj2U0HM" target="_blank" rel="noopener">Pen Testing Methodology</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="border-top: 1px solid var(--glass-border); padding: 4rem 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                    Dev<span>Scroll</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Twitter</a>
+                    <a href="#" style="margin-left: 1.5rem;">GitHub</a>
+                    <a href="#" style="margin-left: 1.5rem;">Discord</a>
+                </div>
+            </div>
+            <div class="copyright" style="padding-top: 2rem;">
+                &copy; 2026 DevScroll Learning Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Accordion Logic
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items in THIS accordion
+                item.parentElement.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Topic-level completion logic for modules/tracks
+        const TRACK_PROGRESS_KEY = 'devscroll.trackTopicProgress.v1';
+        const trackProgress = JSON.parse(localStorage.getItem(TRACK_PROGRESS_KEY) || '{}');
+
+        const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+        const parseTopics = (lessonEl) => {
+            const detailNode = lessonEl.querySelector('div div');
+            const detailText = detailNode ? detailNode.textContent : '';
+            const parsed = (detailText || '')
+                .split('•')
+                .map((topic) => topic.trim())
+                .filter(Boolean);
+
+            if (parsed.length > 0) {
+                return parsed;
+            }
+
+            const lessonTitle = lessonEl.querySelector('span')?.textContent?.trim();
+            return lessonTitle ? [lessonTitle] : [];
+        };
+
+        const saveProgress = () => {
+            localStorage.setItem(TRACK_PROGRESS_KEY, JSON.stringify(trackProgress));
+        };
+
+        const updateStatuses = (trackCard) => {
+            const moduleItems = trackCard.querySelectorAll('.accordion-item');
+            let trackComplete = moduleItems.length > 0;
+
+            moduleItems.forEach((moduleItem) => {
+                const topicChecks = moduleItem.querySelectorAll('.topic-pill input[type="checkbox"]');
+                const allTopicsDone = topicChecks.length > 0 && Array.from(topicChecks).every((cb) => cb.checked);
+                const statusEl = moduleItem.querySelector('.module-status');
+
+                if (statusEl) {
+                    statusEl.textContent = allTopicsDone ? 'Complete' : 'Incomplete';
+                    statusEl.classList.toggle('complete', allTopicsDone);
+                }
+
+                if (!allTopicsDone) {
+                    trackComplete = false;
+                }
+            });
+
+            const trackStatusEl = trackCard.querySelector('.track-progress-status');
+            if (trackStatusEl) {
+                trackStatusEl.textContent = trackComplete ? 'Track Complete (all module topics done)' : 'Track Incomplete';
+                trackStatusEl.classList.toggle('complete', trackComplete);
+            }
+        };
+
+        document.querySelectorAll('.track-card').forEach((trackCard) => {
+            if (trackCard.dataset.progressInitialized === 'true') {
+                return;
+            }
+
+            const trackTitle = trackCard.querySelector('h3')?.textContent?.trim() || 'track';
+            const trackId = normalize(trackTitle);
+
+            const trackStatus = document.createElement('div');
+            trackStatus.className = 'track-progress-status';
+            trackCard.querySelector('.track-card-content')?.appendChild(trackStatus);
+
+            trackCard.querySelectorAll('.accordion-item').forEach((moduleItem) => {
+                const moduleHeader = moduleItem.querySelector('.accordion-header');
+                const moduleTitle = moduleHeader?.childNodes[0]?.textContent?.trim() || 'module';
+                const moduleId = normalize(moduleTitle);
+
+                const moduleStatus = document.createElement('span');
+                moduleStatus.className = 'module-status';
+                moduleHeader?.appendChild(moduleStatus);
+
+                moduleItem.querySelectorAll('.syllabus-lesson').forEach((lessonEl) => {
+                    const lessonTitle = lessonEl.querySelector('span')?.textContent?.trim() || 'lesson';
+                    const lessonId = normalize(lessonTitle);
+                    const topics = parseTopics(lessonEl);
+
+                    const topicChecklist = document.createElement('div');
+                    topicChecklist.className = 'topic-checklist';
+
+                    topics.forEach((topic) => {
+                        const topicId = normalize(topic);
+                        const topicKey = `${trackId}::${moduleId}::${lessonId}::${topicId}`;
+
+                        const pill = document.createElement('label');
+                        pill.className = 'topic-pill';
+
+                        const check = document.createElement('input');
+                        check.type = 'checkbox';
+                        check.checked = Boolean(trackProgress[topicKey]);
+                        check.addEventListener('change', () => {
+                            trackProgress[topicKey] = check.checked;
+                            saveProgress();
+                            updateStatuses(trackCard);
+                        });
+
+                        const text = document.createElement('span');
+                        text.textContent = topic;
+
+                        pill.appendChild(check);
+                        pill.appendChild(text);
+                        topicChecklist.appendChild(pill);
+                    });
+
+                    lessonEl.appendChild(topicChecklist);
+                });
+            });
+
+            trackCard.dataset.progressInitialized = 'true';
+            updateStatuses(trackCard);
+        });
+    </script>
+</body>
+</html>

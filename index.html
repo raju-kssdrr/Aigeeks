@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | Learning That Sticks</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Master the latest technologies with bite-sized, interactive learning tracks designed for the modern developer.">
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+        </style>
+    </noscript>
+</head>
+<body>
+    <div class="liquid-bg">
+        <div class="blob"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="tracks.html">Tracks</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="#" title="Coming soon">Roadmaps</a></li>
+                <li><a href="#" title="Coming soon">Academy</a></li>
+                <li><a href="#" title="Coming soon">Agents</a></li>
+                <li><a href="auth.html" class="btn btn-primary" id="nav-cta">Get Started</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero container">
+        <div class="hero-content reveal">
+            <div class="glass-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                Trusted by 50,000+ developers
+            </div>
+            <h1>Bite-Sized <span>Mastery</span> for the Modern Developer</h1>
+            <p style="margin-bottom: 3rem;">Don't just watch. DevScroll transforms passive viewing into active mastery with interactive roadmaps, industry syllabi, and elite resources.</p>
+            <div class="hero-btns">
+                <a href="tracks.html" class="btn btn-primary">Explore Tracks</a>
+                <a href="auth.html" class="btn btn-secondary">Try Live Demo</a>
+            </div>
+            
+            <div class="avatar-stack">
+                <div class="stack-group">
+                    <img src="https://ui-avatars.com/api/?name=JS&background=random" alt="User">
+                    <img src="https://ui-avatars.com/api/?name=RN&background=random" alt="User">
+                    <img src="https://ui-avatars.com/api/?name=AI&background=random" alt="User">
+                    <img src="https://ui-avatars.com/api/?name=SD&background=random" alt="User">
+                </div>
+                <div class="stack-text">
+                    Join <span>2.4k+</span> engineers learning today
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual reveal">
+            <div class="glass-card main-visual">
+                <div class="visual-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="visual-body">
+                    <div class="code-line" style="width: 80%;"></div>
+                    <div class="code-line" style="width: 60%;"></div>
+                    <div class="code-line" style="width: 90%; background: var(--cta-color); opacity: 0.3;"></div>
+                    <div class="code-line" style="width: 40%;"></div>
+                </div>
+                <div class="floating-badge" style="top: 20%; right: -20px;">
+                    <div class="pro-badge">AI ROADMAP</div>
+                </div>
+                <div class="floating-badge" style="bottom: 20%; left: -30px;">
+                    <div class="pro-badge" style="background: var(--cta-color); color: #000;">OPEN HUB</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="container" style="padding: 8rem 0;">
+        <div class="section-title reveal">
+            <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Engineered for <span>Growth</span></h2>
+            <p style="color: var(--muted-text); max-width: 600px;">Every feature is designed to reduce friction and accelerate your career trajectory.</p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- Large Focus: Roadmaps -->
+            <div class="bento-item bento-lg reveal">
+                <div style="margin-bottom: 2rem;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--cta-color)" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                </div>
+                <h3>AI Mastery Roadmaps</h3>
+                <p style="color: var(--muted-text); margin-top: 0.5rem; max-width: 400px;">The "Subway Map" to mastery. Follow expert-curated paths through the world's best educational content.</p>
+                <a href="#" title="Coming soon" class="btn btn-secondary" style="align-self: flex-start; margin-top: 1.5rem;">View Roadmaps</a>
+                <div class="chromatic-glow" style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--cta-color); filter: blur(100px); opacity: 0.1;"></div>
+            </div>
+
+            <!-- Tall Side: Pro Resources -->
+            <div class="bento-item bento-tall reveal">
+                <div style="margin-bottom: 250px;">
+                    <div class="pro-badge" style="background: var(--cta-color); color: #000;">OPEN ACCESS</div>
+                </div>
+                <div style="position: relative; z-index: 2;">
+                    <h3>Elite Resource Hub</h3>
+                    <p style="color: var(--muted-text); margin-top: 0.5rem;">Direct access to training from NVIDIA, Anthropic, Google, and Microsoft.</p>
+                    <a href="resources.html" style="color: var(--pro-color); font-weight: 700; margin-top: 1rem; display: block; text-decoration: none;">Explore Pro Hub →</a>
+                </div>
+            </div>
+
+            <!-- Medium: Academy -->
+            <div class="bento-item bento-md reveal">
+                <div style="margin-bottom: 2rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-accent)" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                </div>
+                <h3>University Audit</h3>
+                <p style="color: var(--muted-text); margin-top: 0.5rem;">Audit the "Gold Standard" CS courses from Harvard, Stanford, and MIT.</p>
+                <a href="#" title="Coming soon" style="margin-top: 1rem; color: var(--text-color); font-weight: 500;">Academy Hub →</a>
+            </div>
+
+            <!-- Small: Tracks -->
+            <div class="bento-item bento-sm reveal">
+                <h3>40+ Learning Tracks</h3>
+                <p style="color: var(--muted-text); font-size: 0.85rem;">Interactive syllabi with skill-based badges.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+
+    <footer class="container" style="border-top: 1px solid var(--glass-border); padding-top: 4rem;">
+        <div class="footer-content">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Twitter</a>
+                <a href="#" style="margin-left: 1.5rem;">GitHub</a>
+                <a href="#" style="margin-left: 1.5rem;">Discord</a>
+            </div>
+        </div>
+        <div class="copyright" style="padding-bottom: 4rem;">
+            &copy; 2026 DevScroll Learning Inc. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+    (function() {
+        var token = localStorage.getItem('devscroll_token');
+        if (token) {
+            var cta = document.getElementById('nav-cta');
+            if (cta) {
+                cta.textContent = 'Dashboard';
+                cta.href = 'tracks.html';
+                var logout = document.createElement('a');
+                logout.href = '#';
+                logout.textContent = 'Log out';
+                logout.style.cssText = 'margin-left:1rem;color:var(--muted-text);font-size:0.9rem;text-decoration:none;';
+                logout.onclick = function(e) { e.preventDefault(); localStorage.removeItem('devscroll_token'); location.reload(); };
+                cta.parentElement.appendChild(logout);
+            }
+        }
+    })();
+    </script>
+</body>
+</html>

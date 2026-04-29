@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | Join the Revolution</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: stretch;
+        }
+        .auth-panel {
+            flex: 1;
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .auth-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 80%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+        }
+        .auth-content {
+            flex: 1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            background: var(--bg-color);
+        }
+        .auth-form-card {
+            width: 100%;
+            max-width: 450px;
+        }
+        .auth-form-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .social-auth {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            border: 1px solid var(--secondary-color);
+            background: transparent;
+            color: var(--text-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .social-btn:hover {
+            background: var(--secondary-color);
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--muted-text);
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .divider:not(:empty)::before { margin-right: 1rem; }
+        .divider:not(:empty)::after { margin-left: 1rem; }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.5rem;
+            color: var(--text-color);
+            outline: none;
+            transition: var(--transition);
+        }
+        .form-group input:focus {
+            border-color: var(--cta-color);
+        }
+        .auth-footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--muted-text);
+        }
+        .auth-footer a {
+            color: var(--cta-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .auth-panel { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-panel">
+            <a href="index.html" class="logo" style="margin-bottom: 3rem;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <h1 style="font-size: 3rem; margin-bottom: 1.5rem;">Join the future of <span>learning.</span></h1>
+            <p style="color: var(--muted-text); font-size: 1.1rem; max-width: 400px;">Experience the most interactive environment to master the latest technologies. Join 50,000+ developers today.</p>
+            
+            <div style="margin-top: 4rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="display: flex;">
+                        <img src="https://ui-avatars.com/api/?name=J&background=random" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #0F172A;">
+                        <img src="https://ui-avatars.com/api/?name=S&background=random" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #0F172A; margin-left: -15px;">
+                        <img src="https://ui-avatars.com/api/?name=M&background=random" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #0F172A; margin-left: -15px;">
+                    </div>
+                    <span style="font-size: 0.9rem; color: var(--muted-text);">"Best platform for deep learning in small bites."</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="auth-content">
+            <div class="auth-form-card">
+                <h2>Get <span>Started</span></h2>
+                <p style="color: var(--muted-text); margin-bottom: 2.5rem;">Create your account to start your journey.</p>
+                
+                <div class="social-auth">
+                    <button class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        GitHub
+                    </button>
+                    <button class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72S7.653 3.28 12.48 3.28c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                        Google
+                    </button>
+                </div>
+                
+                <div class="divider">or use email</div>
+                
+                <form id="register-form" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="reg-email">Email Address</label>
+                        <input id="reg-email" name="email" type="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input id="reg-password" name="password" type="password" placeholder="••••••••" minlength="8" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Account</button>
+                </form>
+                <script>
+                async function handleRegister(e) {
+                    e.preventDefault();
+                    const btn = e.target.querySelector('[type="submit"]');
+                    btn.disabled = true;
+                    btn.textContent = 'Creating account…';
+                    try {
+                        const res = await fetch('/api/v1/auth/register', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                email: e.target.email.value,
+                                password: e.target.password.value,
+                            }),
+                        });
+                        const data = await res.json();
+                        if (res.ok) {
+                            localStorage.setItem('devscroll_token', data.token);
+                            const params = new URLSearchParams(location.search);
+                            window.location.href = params.get('next') || 'index.html';
+                        } else {
+                            alert(data.error || 'Registration failed');
+                            btn.disabled = false;
+                            btn.textContent = 'Create Account';
+                        }
+                    } catch {
+                        alert('Network error. Is the backend running?');
+                        btn.disabled = false;
+                        btn.textContent = 'Create Account';
+                    }
+                }
+                </script>
+
+                <div class="auth-footer">
+                    Already have an account? <a href="login.html">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

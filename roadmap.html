@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | AI Engineering Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="A complete, curated path from first lines of code to building autonomous AI agents. Based on the open-source AI Engineering Roadmap.">
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+        </style>
+    </noscript>
+</head>
+<body>
+    <div class="liquid-bg">
+        <div class="blob" style="background: var(--agent-purple);"></div>
+        <div class="blob blob-2" style="background: var(--indigo-accent);"></div>
+    </div>
+
+    <nav id="navbar" class="scrolled">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tracks.html">Tracks</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="roadmap.html" class="active">Roadmap</a></li>
+                <li><a href="video-paths.html">Roadmaps</a></li>
+                <li><a href="university.html">Academy</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="auth.html" class="btn btn-primary">Join Free</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="agents-hero">
+            <div class="glass-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--agent-purple)" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+                The Blueprint for AI Engineering
+            </div>
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Engineering <span>Master Roadmap</span></h1>
+            <p style="color: var(--muted-text); max-width: 700px; margin: 0 auto;">Inspired by OSSU, this is a comprehensive, self-taught path from computer science fundamentals to building production-ready AI systems.</p>
+        </section>
+
+        <!-- Vertical Timeline Path -->
+        <div class="video-timeline" style="max-width: 800px; margin: 4rem auto;">
+            
+            <!-- Step 1: Programming -->
+            <div class="timeline-step reveal">
+                <div class="step-marker" style="background: var(--agent-purple);">01</div>
+                <div class="step-content">
+                    <div class="agent-tag tag-native">4–6 Weeks</div>
+                    <h3>🛠️ Programming Foundations</h3>
+                    <p style="color: var(--muted-text); margin-bottom: 1.5rem;">The bedrock of AI engineering. Master Python, Git version control, and Linux fundamentals.</p>
+                    <ul style="list-style: none; color: var(--text-color); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;">• Python Data Structures & Algos</li>
+                        <li style="margin-bottom: 0.5rem;">• Shell Scripting & Command Line</li>
+                        <li style="margin-bottom: 0.5rem;">• Version Control with Git/GitHub</li>
+                        <li style="margin-bottom: 0.5rem;">• Virtual Environments & pip</li>
+                        <li style="margin-bottom: 0.5rem;">• Debugging & Testing (pytest)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 2: Math -->
+            <div class="timeline-step reveal">
+                <div class="step-marker" style="background: var(--indigo-accent);">02</div>
+                <div class="step-content">
+                    <div class="agent-tag tag-framework">6–8 Weeks</div>
+                    <h3>📐 Math for AI</h3>
+                    <p style="color: var(--muted-text); margin-bottom: 1.5rem;">Understand the engine behind the logic. Linear algebra, calculus, and probability stats.</p>
+                    <ul style="list-style: none; color: var(--text-color); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;">• Linear Algebra (Basis/Eigenvectors)</li>
+                        <li style="margin-bottom: 0.5rem;">• Multivariable Calculus</li>
+                        <li style="margin-bottom: 0.5rem;">• Probability & Bayesian Inference</li>
+                        <li style="margin-bottom: 0.5rem;">• Information Theory (Entropy)</li>
+                        <li style="margin-bottom: 0.5rem;">• Optimization (Gradient Descent)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 3: Machine Learning -->
+            <div class="timeline-step reveal">
+                <div class="step-marker" style="background: var(--cta-color);">03</div>
+                <div class="step-content">
+                    <div class="agent-tag tag-native">6–8 Weeks</div>
+                    <h3>🤖 Machine Learning</h3>
+                    <p style="color: var(--muted-text); margin-bottom: 1.5rem;">Supervised and unsupervised learning. Scikit-learn, model evaluation, and bias/variance tradeoffs.</p>
+                    <ul style="list-style: none; color: var(--text-color); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;">• Regression & Classification</li>
+                        <li style="margin-bottom: 0.5rem;">• Decision Trees & Random Forests</li>
+                        <li style="margin-bottom: 0.5rem;">• Support Vector Machines</li>
+                        <li style="margin-bottom: 0.5rem;">• Dimensionality Reduction (PCA)</li>
+                        <li style="margin-bottom: 0.5rem;">• Evaluation Metrics (F1, AUC, ROC)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 4: Deep Learning -->
+            <div class="timeline-step reveal">
+                <div class="step-marker" style="background: var(--agent-blue);">04</div>
+                <div class="step-content">
+                    <div class="agent-tag tag-framework">4–6 Weeks</div>
+                    <h3>🧠 Deep Learning Origins</h3>
+                    <p style="color: var(--muted-text); margin-bottom: 1.5rem;">Neural networks from scratch. CNNs, RNNs, and the core architecture of 'Modern AI'.</p>
+                    <ul style="list-style: none; color: var(--text-color); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;">• Backpropagation Fundamentals</li>
+                        <li style="margin-bottom: 0.5rem;">• PyTorch & TensorFlow Workflows</li>
+                        <li style="margin-bottom: 0.5rem;">• CNNs for Image Recognition</li>
+                        <li style="margin-bottom: 0.5rem;">• RNNs & LSTMs for Sequences</li>
+                        <li style="margin-bottom: 0.5rem;">• Attention Mechanism</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 5: Specializations -->
+            <div class="timeline-step reveal">
+                <div class="step-marker" style="background: #FACC15;">05</div>
+                <div class="step-content">
+                    <div class="agent-tag tag-native">3–5 Weeks Each</div>
+                    <h3>🔬 Industry Specializations</h3>
+                    <p style="color: var(--muted-text); margin-bottom: 1.5rem;">Deep dive into NLP, Computer Vision, and Reinforcement Learning.</p>
+                    <ul style="list-style: none; color: var(--text-color); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;">• <b>NLP:</b> BERT, GPT, Text Classification</li>
+                        <li style="margin-bottom: 0.5rem;">• <b>Vision:</b> Object Detection, YOLO, Segmentation</li>
+                        <li style="margin-bottom: 0.5rem;">• <b>RL:</b> Q-Learning, Policy Gradients, AlphaGo</li>
+                    </ul>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <span class="pro-badge" style="background: rgba(255,255,255,0.05);">NLP</span>
+                        <span class="pro-badge" style="background: rgba(255,255,255,0.05);">VISION</span>
+                        <span class="pro-badge" style="background: rgba(255,255,255,0.05);">RL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Modern AI -->
+            <div class="timeline-step reveal">
+                <div class="step-marker" style="background: #EC4899;">06</div>
+                <div class="step-content">
+                    <div class="agent-tag tag-framework">2–5 Weeks</div>
+                    <h3>🚀 Modern AI Stack</h3>
+                    <p style="color: var(--muted-text); margin-bottom: 1.5rem;">LLMs, Agentic Workflows, RAG, and Prompt Engineering. The 2024-2025 Frontier.</p>
+                    <ul style="list-style: none; color: var(--text-color); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;">• Transformer Architectures</li>
+                        <li style="margin-bottom: 0.5rem;">• Vector Databases (Pinecone/Milvus)</li>
+                        <li style="margin-bottom: 0.5rem;">• Multi-Agent Orchestration (LangGraph)</li>
+                        <li style="margin-bottom: 0.5rem;">• Fine-tuning LLaMA, Mistral</li>
+                        <li style="margin-bottom: 0.5rem;">• Function Calling & Tools</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 7: Capstone -->
+            <div class="timeline-step reveal">
+                <div class="step-marker" style="background: #10B981;">07</div>
+                <div class="step-content">
+                    <div class="agent-tag tag-native">Ongoing</div>
+                    <h3>🧪 Production Capstone</h3>
+                    <p style="color: var(--muted-text); margin-bottom: 1.5rem;">Build and deploy end-to-end AI applications. Graduate to professional AI engineering.</p>
+                    <ul style="list-style: none; color: var(--text-color); font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;">• End-to-End ML Pipeline</li>
+                        <li style="margin-bottom: 0.5rem;">• Model Deployment (FastAPI, Docker)</li>
+                        <li style="margin-bottom: 0.5rem;">• MLOps & CI/CD for ML</li>
+                        <li style="margin-bottom: 0.5rem;">• Monitoring & Observability</li>
+                    </ul>
+                    <a href="tracks.html" class="btn btn-primary" style="margin-top: 1rem;">Explore Final Projects</a>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="disclaimer-box reveal">
+            <h3 style="color: var(--text-color); margin-bottom: 1rem;">⚖️ Fair Use & Open-Source Attribution</h3>
+            <p>
+                This roadmap is meticulously derived from the **[AI Engineering Roadmap](https://github.com/raju-kssdrr/Ai-Engineering-Roadmap)** GitHub repository. We deeply respect the open-source community effort to structure this curriculum.
+            </p>
+            <p style="margin-top: 1rem;">
+                <b>DevScroll</b> serves as a visual and interactive interface for this curriculum, ensuring that developers have a streamlined path to world-class resources from Stanford, MIT, DeepLearning.AI, and others. Original licensing (MIT) and creator credit belong to the `raju-kssdrr` project contributors.
+            </p>
+        </section>
+    </main>
+
+    <footer class="container" style="border-top: 1px solid var(--glass-border); padding-top: 4rem; margin-top: 4rem;">
+        <div class="footer-content">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span> <span class="pro-badge" style="background: var(--indigo-accent);">ROADMAP</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Official Repository</a>
+                <a href="#" style="margin-left: 1.5rem;">Community Forum</a>
+            </div>
+        </div>
+        <div class="copyright" style="padding-bottom: 4rem;">
+            &copy; 2026 DevScroll Roadmaps. Powered by Open Source.
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
