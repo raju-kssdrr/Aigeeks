@@ -190,6 +190,7 @@
             <button class="filter-btn" data-filter="ai">AI & ML</button>
             <button class="filter-btn" data-filter="devops">DevOps</button>
             <button class="filter-btn" data-filter="security">Security</button>
+            <button class="filter-btn" data-filter="harness">Harness Eng</button>
         </div>
 
         <div class="tracks-grid">
@@ -1143,6 +1144,157 @@
                                         <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Recon Phase • Exploitation • Privilege Escalation • Report Writing</div>
                                         <span class="lesson-duration">50m</span>
                                         <div class="lesson-resources"><a href="https://portswigger.net/web-security/all-labs" target="_blank" rel="noopener">PortSwigger Web Security Labs</a> · <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener">OWASP Testing Guide</a> · <a href="https://www.youtube.com/watch?v=3FNYvj2U0HM" target="_blank" rel="noopener">Pen Testing Methodology</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Harness Engineer -->
+            <div class="track-card reveal" data-category="harness">
+                <div class="track-card-img">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #0f0f1a, #1a0a2e); display: flex; align-items: center; justify-content: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                </div>
+                <div class="track-card-content">
+                    <div class="badge-row">
+                        <span class="badge badge-senior">Staff+ Path</span>
+                        <span class="badge badge-new">AI Harness</span>
+                    </div>
+                    <h3>Harness Engineer</h3>
+                    <p style="color: var(--muted-text); margin-top: 0.5rem;">Design the environments, constraints, and feedback loops that make AI agents reliable in production.</p>
+
+                    <div class="syllabus-accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 1: Foundation — How LLMs Actually Work
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Token-by-Token Generation</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Autoregressive Sampling • Temperature & Top-P • Attention Mechanism • Why Output Is Probabilistic</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" rel="noopener">Let's Build GPT (Karpathy)</a> · <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">The Illustrated Transformer</a> · <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Why AI Agents Fail Without Structure</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Hallucination Root Causes • Missing Environment Contracts • Context Drift • Tool Misuse Patterns</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener">ReAct: Reasoning + Acting</a> · <a href="https://www.anthropic.com/research/alignment-faking" target="_blank" rel="noopener">Anthropic Alignment Research</a> · <a href="https://www.youtube.com/watch?v=Ndu2vA8oE-4" target="_blank" rel="noopener">AI Agent Failure Modes</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Prompt vs Context vs Harness Engineering</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Prompt Engineering Limits • Context Engineering Scope • Harness as Infrastructure • Where Each Applies</div>
+                                        <span class="lesson-duration">30m</span>
+                                        <div class="lesson-resources"><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic Prompt Engineering Guide</a> · <a href="https://x.com/karpathy/status/1937902205765607626" target="_blank" rel="noopener">Karpathy on Context Engineering</a> · <a href="https://docs.anthropic.com/en/docs/claude-code/memory" target="_blank" rel="noopener">Claude Code Memory Docs</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 2: Context Engineering
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Building a Well-Structured AGENTS.md</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• What Belongs in Agent Context • Role Definition • Tool Contracts • Session Scope vs Persistent Memory</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://docs.anthropic.com/en/docs/claude-code/memory" target="_blank" rel="noopener">Claude Code Memory & AGENTS.md</a> · <a href="https://modelcontextprotocol.io/introduction" target="_blank" rel="noopener">MCP Protocol Intro</a> · <a href="https://www.youtube.com/watch?v=RXV4FHSF8ew" target="_blank" rel="noopener">Agent Memory Patterns</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Retrieval Pipelines & Token Budget Management</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• RAG Architecture • Context Relevance Scoring • Token Budget Allocation • Avoiding Context Rot in Long Sessions</div>
+                                        <span class="lesson-duration">50m</span>
+                                        <div class="lesson-resources"><a href="https://docs.llamaindex.ai/en/stable/understanding/rag/" target="_blank" rel="noopener">LlamaIndex RAG Guide</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/long-context-tips" target="_blank" rel="noopener">Anthropic Long-Context Tips</a> · <a href="https://www.youtube.com/watch?v=T-D1OfcDW1M" target="_blank" rel="noopener">RAG Pipeline Deep Dive</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 3: Guide Design (Feedforward)
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Constraint Documents That Reduce Hallucination</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Negative Constraint Patterns • Scope Bounding • Refusal Triggers • Grounding to Source of Truth</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://www.anthropic.com/research/model-spec" target="_blank" rel="noopener">Anthropic Model Spec</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/reduce-hallucinations" target="_blank" rel="noopener">Reducing Hallucinations Guide</a> · <a href="https://www.youtube.com/watch?v=ljFYsNFZyLw" target="_blank" rel="noopener">Constraint-Based Prompting</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Harness Templates & Skill Files</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Repeatable Workflow Patterns • SKILL.md Architecture • Instruction Sets for Coding Agents • Hook Configuration</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://docs.anthropic.com/en/docs/claude-code/tutorials" target="_blank" rel="noopener">Claude Code Custom Skills</a> · <a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank" rel="noopener">Claude Code Hooks Docs</a> · <a href="https://modelcontextprotocol.io/docs/concepts/servers" target="_blank" rel="noopener">MCP Server Patterns</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 4: Sensor Design (Feedback)
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Linters as Correction Sensors</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Pre-commit Hook Design • Injecting Correction Into Agent Context • ESLint as Structural Feedback • TypeScript as Runtime Guard</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://pre-commit.com/" target="_blank" rel="noopener">Pre-commit Hooks Guide</a> · <a href="https://eslint.org/docs/latest/use/getting-started" target="_blank" rel="noopener">ESLint Getting Started</a> · <a href="https://www.typescriptlang.org/docs/handbook/2/types-from-types.html" target="_blank" rel="noopener">TypeScript Type Guards</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Self-Correction Loops & Structural Tests</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Agent Self-Review Before Human Review • Architectural Boundary Tests • Dependency Direction Enforcement • Test-as-Constraint</div>
+                                        <span class="lesson-duration">45m</span>
+                                        <div class="lesson-resources"><a href="https://www.archunit.org/userguide/html/000_Index.html" target="_blank" rel="noopener">ArchUnit Architecture Testing</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use" target="_blank" rel="noopener">Claude Tool Use for Self-Review</a> · <a href="https://www.youtube.com/watch?v=EZ05e7EMOLM" target="_blank" rel="noopener">AI Code Review Pipelines</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Module 5: Production & Iteration
+                                <span class="accordion-icon">▾</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="syllabus-list">
+                                    <li class="syllabus-lesson">
+                                        <div><span>Detecting & Fixing Harness Entropy</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Drift Identification in AI-Generated Code • Technical Debt Patterns • Harness Regression Testing • Entropy Metrics</div>
+                                        <span class="lesson-duration">40m</span>
+                                        <div class="lesson-resources"><a href="https://www.anthropic.com/research/evaluating-ai-systems" target="_blank" rel="noopener">Evaluating AI Systems (Anthropic)</a> · <a href="https://martinfowler.com/articles/refactoring-pipelines.html" target="_blank" rel="noopener">Refactoring Pipelines</a> · <a href="https://www.youtube.com/watch?v=Y6DLNP01qa0" target="_blank" rel="noopener">AI Technical Debt Management</a></div>
+                                        <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
+                                    </li>
+                                    <li class="syllabus-lesson">
+                                        <div><span>Diagnosing Harness Failure vs Model Failure</span></div>
+                                        <div style="font-size:0.75rem;color:var(--muted-text);margin-top:0.25rem;">• Failure Attribution Framework • Context Audit Trail • Prompt Isolation Testing • When to Blame the Harness</div>
+                                        <span class="lesson-duration">35m</span>
+                                        <div class="lesson-resources"><a href="https://www.anthropic.com/research/measuring-model-persuasiveness" target="_blank" rel="noopener">Anthropic Model Evaluation Research</a> · <a href="https://docs.anthropic.com/en/docs/test-and-evaluate/eval-tool" target="_blank" rel="noopener">Claude Eval Tool</a> · <a href="https://www.youtube.com/watch?v=gGuFdQKKEnI" target="_blank" rel="noopener">LLM Debugging Strategies</a></div>
                                         <a href="auth.html" class="lesson-start-btn">Try Demo →</a>
                                     </li>
                                 </ul>
