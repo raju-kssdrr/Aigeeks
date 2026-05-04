@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | Harness Engineer Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="The Harness Engineer skill checklist. Check off what you can already do — the gaps are your learning path.">
+    <style>
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] {
+            accent-color: #22c55e;
+            width: 1.1rem;
+            height: 1.1rem;
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .checklist-item label {
+            cursor: pointer;
+            line-height: 1.5;
+            flex: 1;
+        }
+        .watch-btn {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border);
+            background: rgba(34,197,94,0.08);
+            color: var(--cta-color);
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .watch-btn:hover {
+            background: rgba(34,197,94,0.18);
+        }
+        .checklist-item.checked label {
+            text-decoration: line-through;
+            color: var(--muted-text);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 2.5rem 0 1rem;
+        }
+        .section-header h3 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cta-color);
+            margin: 0;
+        }
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+        .module-tag {
+            font-size: 0.72rem;
+            color: var(--muted-text);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 999px;
+            padding: 0.15rem 0.6rem;
+            white-space: nowrap;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        .progress-bar-wrap {
+            background: rgba(255,255,255,0.07);
+            border-radius: 999px;
+            height: 8px;
+            margin: 2rem 0 0.5rem;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--cta-color);
+            border-radius: 999px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+        .progress-label {
+            font-size: 0.85rem;
+            color: var(--muted-text);
+            margin-bottom: 3rem;
+        }
+        .progress-label span {
+            color: var(--cta-color);
+            font-weight: 700;
+        }
+        .checklist-card {
+            background: var(--primary-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2rem 2.5rem;
+            max-width: 800px;
+            margin: 0 auto 6rem;
+        }
+    </style>
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+        </style>
+    </noscript>
+</head>
+<body>
+    <div class="liquid-bg">
+        <div class="blob" style="background: var(--agent-purple);"></div>
+        <div class="blob blob-2" style="background: var(--indigo-accent);"></div>
+    </div>
+
+    <nav id="navbar" class="scrolled">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="tracks.html">Tracks</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="roadmap.html">AI Engineering Roadmap</a></li>
+                <li><a href="video-paths.html">AI Mastery Videos</a></li>
+                <li><a href="harness-roadmap.html" class="active">Harness Roadmap</a></li>
+                <li><a href="university.html">Academy</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="auth.html" class="btn btn-primary">Join Free</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="agents-hero">
+            <div class="glass-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--agent-purple)" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"></path></svg>
+                Harness Engineer Track
+            </div>
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Harness Engineer <span>Roadmap</span></h1>
+            <p style="color: var(--muted-text); max-width: 660px; margin: 0 auto;">Check off what you can already do. The gaps are your learning path.</p>
+        </section>
+
+        <div class="checklist-card reveal">
+
+            <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-label"><span id="progressCount">0</span> of 15 skills checked</div>
+
+            <!-- FOUNDATION -->
+            <div class="section-header"><h3>Foundation</h3></div>
+
+            <div class="checklist-item" id="item-1">
+                <input type="checkbox" id="c1">
+                <label for="c1">Explain how an LLM generates output token by token</label>
+                <a href="https://www.youtube.com/watch?v=Qs7emGwPfao" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 1</span>
+            </div>
+            <div class="checklist-item" id="item-2">
+                <input type="checkbox" id="c2">
+                <label for="c2">Describe why AI agents fail without structured environments</label>
+                <a href="https://www.youtube.com/watch?v=9lWM_yeD7E8" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 2</span>
+            </div>
+            <div class="checklist-item" id="item-3">
+                <input type="checkbox" id="c3">
+                <label for="c3">Differentiate prompt engineering vs context engineering vs harness engineering</label>
+                <a href="https://www.youtube.com/watch?v=cjzqY2UbW6c" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 3</span>
+            </div>
+
+            <!-- CONTEXT ENGINEERING -->
+            <div class="section-header"><h3>Context Engineering</h3></div>
+
+            <div class="checklist-item" id="item-4">
+                <input type="checkbox" id="c4">
+                <label for="c4">Build a well-structured AGENTS.md file for a coding agent</label>
+                <a href="https://www.youtube.com/watch?v=4m8AgfeK6kU" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 4</span>
+            </div>
+            <div class="checklist-item" id="item-5">
+                <input type="checkbox" id="c5">
+                <label for="c5">Design a retrieval pipeline that feeds relevant context at the right time</label>
+                <a href="https://www.youtube.com/watch?v=GH3lrOsU3AU" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 5</span>
+            </div>
+            <div class="checklist-item" id="item-6">
+                <input type="checkbox" id="c6">
+                <label for="c6">Manage token budgets and avoid context rot in long agent sessions</label>
+                <a href="https://www.youtube.com/watch?v=dk7o2iFgRkY" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 5</span>
+            </div>
+
+            <!-- GUIDE DESIGN (FEEDFORWARD) -->
+            <div class="section-header"><h3>Guide Design (Feedforward)</h3></div>
+
+            <div class="checklist-item" id="item-7">
+                <input type="checkbox" id="c7">
+                <label for="c7">Write constraint documents that reduce agent hallucination</label>
+                <a href="https://www.youtube.com/watch?v=MJVTaFMSKkU" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 6</span>
+            </div>
+            <div class="checklist-item" id="item-8">
+                <input type="checkbox" id="c8">
+                <label for="c8">Build harness templates for repeatable agent workflows</label>
+                <a href="https://www.youtube.com/watch?v=OTjZBjq5FPg" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 7</span>
+            </div>
+            <div class="checklist-item" id="item-9">
+                <input type="checkbox" id="c9">
+                <label for="c9">Configure skill files and instruction sets for coding agents</label>
+                <a href="https://www.youtube.com/watch?v=7s9Fnorg3eI" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 7</span>
+            </div>
+
+            <!-- SENSOR DESIGN (FEEDBACK) -->
+            <div class="section-header"><h3>Sensor Design (Feedback)</h3></div>
+
+            <div class="checklist-item" id="item-10">
+                <input type="checkbox" id="c10">
+                <label for="c10">Set up a linter that injects correction instructions into agent context</label>
+                <a href="https://www.youtube.com/watch?v=uRTX0WgBuqc" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 8</span>
+            </div>
+            <div class="checklist-item" id="item-11">
+                <input type="checkbox" id="c11">
+                <label for="c11">Build a feedback loop where agents self-correct before human review</label>
+                <a href="https://www.youtube.com/watch?v=h38wONkdZfk" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 8</span>
+            </div>
+            <div class="checklist-item" id="item-12">
+                <input type="checkbox" id="c12">
+                <label for="c12">Use structural tests to enforce architectural boundaries in AI-generated code</label>
+                <a href="https://www.youtube.com/watch?v=uC44zFz7JSM" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 9</span>
+            </div>
+
+            <!-- PRODUCTION & ITERATION -->
+            <div class="section-header"><h3>Production &amp; Iteration</h3></div>
+
+            <div class="checklist-item" id="item-13">
+                <input type="checkbox" id="c13">
+                <label for="c13">Detect and fix harness entropy (drift / technical debt from AI-generated code)</label>
+                <a href="https://www.youtube.com/watch?v=S5kQRgJ-iug" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 10</span>
+            </div>
+            <div class="checklist-item" id="item-14">
+                <input type="checkbox" id="c14">
+                <label for="c14">Identify when a harness failure — not the model — caused a bad output</label>
+                <a href="https://www.youtube.com/watch?v=KX_VwNhcFtk" target="_blank" class="watch-btn">Watch →</a>
+                <span class="module-tag">Module 10</span>
+            </div>
+
+            <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="tracks.html" class="btn btn-primary">Start Harness Track →</a>
+                <button id="resetBtn" style="padding:0.6rem 1.4rem; border-radius:2rem; border:1px solid var(--glass-border); background:transparent; color:var(--muted-text); cursor:pointer; font-size:0.9rem;">Reset</button>
+            </div>
+        </div>
+    </main>
+
+    <footer style="border-top: 1px solid var(--glass-border); padding: 4rem 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                    Dev<span>Scroll</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Twitter</a>
+                    <a href="#" style="margin-left: 1.5rem;">GitHub</a>
+                    <a href="#" style="margin-left: 1.5rem;">Discord</a>
+                </div>
+            </div>
+            <div class="copyright" style="padding-top: 2rem;">
+                &copy; 2026 DevScroll Learning Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        const STORAGE_KEY = 'devscroll.harnessChecklist.v1';
+        const total = 14;
+
+        function saveState() {
+            const state = {};
+            for (let i = 1; i <= total; i++) {
+                state['c' + i] = document.getElementById('c' + i).checked;
+            }
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function loadState() {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            for (let i = 1; i <= total; i++) {
+                const cb = document.getElementById('c' + i);
+                if (saved['c' + i]) cb.checked = true;
+            }
+        }
+
+        function updateProgress() {
+            let checked = 0;
+            for (let i = 1; i <= total; i++) {
+                const cb = document.getElementById('c' + i);
+                const item = document.getElementById('item-' + i);
+                if (cb.checked) {
+                    checked++;
+                    item.classList.add('checked');
+                } else {
+                    item.classList.remove('checked');
+                }
+            }
+            document.getElementById('progressCount').textContent = checked;
+            document.getElementById('progressFill').style.width = (checked / total * 100) + '%';
+        }
+
+        loadState();
+        updateProgress();
+
+        for (let i = 1; i <= total; i++) {
+            document.getElementById('c' + i).addEventListener('change', () => {
+                updateProgress();
+                saveState();
+            });
+        }
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            for (let i = 1; i <= total; i++) {
+                document.getElementById('c' + i).checked = false;
+            }
+            localStorage.removeItem(STORAGE_KEY);
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
