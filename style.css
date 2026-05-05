@@ -126,11 +126,12 @@ nav.scrolled {
 
 .logo {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .hero h1 span, .section-header h2 span, .cta-card h2 span {
@@ -142,8 +143,9 @@ nav.scrolled {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.25rem;
     align-items: center;
+    font-size: 0.875rem;
 }
 
 .nav-links a:hover {

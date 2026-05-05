@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | IBM Quantum & Qiskit Runtime</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .lesson-hero { padding: 7rem 0 3rem; }
+        .lesson-hero .breadcrumb { font-size: 0.85rem; color: var(--muted-text); margin-bottom: 1rem; }
+        .lesson-hero .breadcrumb a { color: var(--cta-color); text-decoration: none; }
+        .lesson-body { max-width: 820px; margin: 0 auto; padding-bottom: 6rem; }
+        .lesson-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 2.5rem; }
+        .lesson-meta span { font-size: 0.8rem; padding: 0.25rem 0.75rem; border-radius: 999px; border: 1px solid var(--glass-border); color: var(--muted-text); background: rgba(255,255,255,0.04); }
+        .topic-tag { display: inline-block; font-size: 0.78rem; padding: 0.2rem 0.65rem; border-radius: 999px; background: rgba(34,197,94,0.1); color: var(--cta-color); border: 1px solid rgba(34,197,94,0.2); margin: 0.2rem; }
+        .topics-row { margin: 1.5rem 0; }
+        .concept-card { background: var(--primary-color); border: 1px solid var(--glass-border); border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; }
+        .concept-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-color); }
+        .concept-card p { color: var(--muted-text); font-size: 0.92rem; line-height: 1.7; }
+        .code-block { background: #0d1117; border: 1px solid var(--glass-border); border-radius: 1rem; padding: 1.5rem; margin: 2rem 0; overflow-x: auto; }
+        .code-block pre { margin: 0; }
+        .code-block code { font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.88rem; color: #e6edf3; line-height: 1.7; }
+        .resources-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); }
+        .resources-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-color); }
+        .resource-link { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 0.75rem; margin-bottom: 0.5rem; color: var(--text-color); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .resource-link:hover { border-color: var(--cta-color); color: var(--cta-color); }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); }
+        .nav-btn { padding: 0.6rem 1.4rem; border-radius: 2rem; border: 1px solid var(--glass-border); color: var(--text-color); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .nav-btn:hover { border-color: var(--cta-color); color: var(--cta-color); }
+        .nav-btn-next { background: var(--cta-color); color: #000; border-color: var(--cta-color); font-weight: 600; }
+        .nav-btn-next:hover { opacity: 0.85; color: #000; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cta-color); margin-bottom: 0.75rem; }
+        .key-concepts { margin: 2.5rem 0; }
+        .intro-text { font-size: 1.05rem; line-height: 1.8; color: var(--muted-text); margin-bottom: 2rem; border-left: 3px solid var(--cta-color); padding-left: 1.25rem; }
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../tracks.html">Tracks</a></li>
+                <li><a href="../resources.html">Resources</a></li>
+                <li><a href="../roadmap.html">AI Engineering Roadmap</a></li>
+                <li><a href="../video-paths.html">AI Mastery Videos</a></li>
+                <li><a href="../harness-roadmap.html">Harness Roadmap</a></li>
+                <li><a href="../university.html">Academy</a></li>
+                <li><a href="../agents.html">Agents</a></li>
+                <li><a href="../auth.html" class="btn btn-primary">Join Free</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="lesson-hero">
+            <div class="breadcrumb">
+                <a href="../tracks.html">Tracks</a> / <a href="../tracks.html">Quantum Computing for Devs</a> / Module 5: Running on Real Quantum Hardware / <span style="color:var(--text-color)">IBM Quantum & Qiskit Runtime</span>
+            </div>
+            <div class="glass-pill" style="margin-bottom:1rem;">
+                Module 5: Running on Real Quantum Hardware
+            </div>
+            <h1 style="font-size:2.5rem; margin-bottom:0.5rem;">IBM Quantum & Qiskit Runtime</h1>
+            <div class="lesson-meta">
+                <span>⏱ 45 min</span>
+                <span>📚 Quantum Computing for Devs</span>
+                <span>🧩 Lesson 5.1</span>
+            </div>
+            <div class="topics-row"><span class="topic-tag">Backend Selection</span><span class="topic-tag">Job Submission</span><span class="topic-tag">Transpilation</span><span class="topic-tag">Result Analysis</span></div>
+        </section>
+
+        <div class="lesson-body">
+            <div class="key-concepts">
+                <div class="section-label">Core Concepts</div>
+                
+                <div class="concept-card">
+                    <h4>IBM Quantum Access</h4>
+                    <p>Free tier: 127-qubit Eagle and 133-qubit Heron processors via IBM Quantum Platform. Register at quantum.ibm.com. Qiskit Runtime is the execution environment — primitives (Sampler, Estimator) provide a clean interface over raw circuit execution with built-in error mitigation.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Backend Selection</h4>
+                    <p>Choose backend based on: qubit count, topology (connectivity map), T1/T2 coherence times, gate error rates (CNOT < 0.5% is good), and queue wait time. ibm_brisbane and ibm_kyoto are reliable 127-qubit devices. Check backend.properties() for current calibration data.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Transpilation</h4>
+                    <p>Your logical circuit must be transpiled to the hardware's native gate set (CX/ECR, SX, Rz) and qubit connectivity. optimization_level=3 applies heaviest optimization (SABRE routing + Clifford simplification) — reduces depth significantly. Always transpile before estimating runtime cost.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Result Analysis</h4>
+                    <p>Hardware results are probabilistic and noisy. Run sufficient shots (1024–8192) for stable statistics. Compare simulator vs hardware results. Use measurement error mitigation (M3 in mthree library) to correct readout errors. Export results as dict for post-processing.</p>
+                </div>
+            </div>
+            <div class="code-block"><pre><code>from qiskit import QuantumCircuit, transpile
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+# Authenticate (one-time setup)
+# QiskitRuntimeService.save_account(channel="ibm_quantum", token="YOUR_TOKEN")
+service = QiskitRuntimeService(channel="ibm_quantum")
+
+# Select backend
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=5)
+print(f"Using backend: {backend.name}")
+print(f"Qubit count: {backend.num_qubits}")
+print(f"CNOT error rate: {backend.properties().gate_error('cx', [0,1]):.4f}")
+
+# Build circuit
+qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure([0, 1], [0, 1])
+
+# Transpile to hardware
+qc_transpiled = transpile(qc, backend, optimization_level=3)
+print(f"\nOriginal depth: {qc.depth()} → Transpiled depth: {qc_transpiled.depth()}")
+
+# Execute on real hardware
+sampler = Sampler(backend)
+job = sampler.run([qc_transpiled], shots=2048)
+print(f"Job ID: {job.job_id()}")
+
+result = job.result()
+counts = result[0].data.c.get_counts()
+print(f"Results: {counts}")
+# Real hardware: mostly "00" and "11" but some "01" and "10" from noise</code></pre></div>
+            <div class="resources-section">
+                <h3>📎 Resources & Further Reading</h3>
+                <a href="https://docs.quantum.ibm.com/run" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>IBM Quantum Runtime Docs</a><a href="https://learning.quantum.ibm.com/" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>IBM Quantum Learning</a><a href="https://www.youtube.com/watch?v=V3nBFnCeE0s" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Running on IBM Quantum (YouTube)</a>
+            </div>
+            <div class="lesson-nav">
+                <a href="q-m4-l2-nisq-algorithms.html" class="nav-btn nav-btn-prev">← NISQ Algorithms & Mitigation</a>
+                <a href="q-m5-l2-cloud-quantum.html" class="nav-btn nav-btn-next">Amazon Braket & Azure Quantum →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="border-top: 1px solid var(--glass-border); padding: 3rem 0;">
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                    Dev<span>Scroll</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Twitter</a>
+                    <a href="#" style="margin-left:1.5rem;">GitHub</a>
+                </div>
+            </div>
+            <div class="copyright" style="padding-top:1.5rem;">&copy; 2026 DevScroll Learning Inc.</div>
+        </div>
+    </footer>
+    <script src="../main.js"></script>
+</body>
+</html>

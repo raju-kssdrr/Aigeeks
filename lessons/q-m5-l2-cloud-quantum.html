@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | Amazon Braket & Azure Quantum</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .lesson-hero { padding: 7rem 0 3rem; }
+        .lesson-hero .breadcrumb { font-size: 0.85rem; color: var(--muted-text); margin-bottom: 1rem; }
+        .lesson-hero .breadcrumb a { color: var(--cta-color); text-decoration: none; }
+        .lesson-body { max-width: 820px; margin: 0 auto; padding-bottom: 6rem; }
+        .lesson-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 2.5rem; }
+        .lesson-meta span { font-size: 0.8rem; padding: 0.25rem 0.75rem; border-radius: 999px; border: 1px solid var(--glass-border); color: var(--muted-text); background: rgba(255,255,255,0.04); }
+        .topic-tag { display: inline-block; font-size: 0.78rem; padding: 0.2rem 0.65rem; border-radius: 999px; background: rgba(34,197,94,0.1); color: var(--cta-color); border: 1px solid rgba(34,197,94,0.2); margin: 0.2rem; }
+        .topics-row { margin: 1.5rem 0; }
+        .concept-card { background: var(--primary-color); border: 1px solid var(--glass-border); border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; }
+        .concept-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-color); }
+        .concept-card p { color: var(--muted-text); font-size: 0.92rem; line-height: 1.7; }
+        .code-block { background: #0d1117; border: 1px solid var(--glass-border); border-radius: 1rem; padding: 1.5rem; margin: 2rem 0; overflow-x: auto; }
+        .code-block pre { margin: 0; }
+        .code-block code { font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.88rem; color: #e6edf3; line-height: 1.7; }
+        .resources-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); }
+        .resources-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-color); }
+        .resource-link { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 0.75rem; margin-bottom: 0.5rem; color: var(--text-color); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .resource-link:hover { border-color: var(--cta-color); color: var(--cta-color); }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); }
+        .nav-btn { padding: 0.6rem 1.4rem; border-radius: 2rem; border: 1px solid var(--glass-border); color: var(--text-color); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .nav-btn:hover { border-color: var(--cta-color); color: var(--cta-color); }
+        .nav-btn-next { background: var(--cta-color); color: #000; border-color: var(--cta-color); font-weight: 600; }
+        .nav-btn-next:hover { opacity: 0.85; color: #000; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cta-color); margin-bottom: 0.75rem; }
+        .key-concepts { margin: 2.5rem 0; }
+        .intro-text { font-size: 1.05rem; line-height: 1.8; color: var(--muted-text); margin-bottom: 2rem; border-left: 3px solid var(--cta-color); padding-left: 1.25rem; }
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../tracks.html">Tracks</a></li>
+                <li><a href="../resources.html">Resources</a></li>
+                <li><a href="../roadmap.html">AI Engineering Roadmap</a></li>
+                <li><a href="../video-paths.html">AI Mastery Videos</a></li>
+                <li><a href="../harness-roadmap.html">Harness Roadmap</a></li>
+                <li><a href="../university.html">Academy</a></li>
+                <li><a href="../agents.html">Agents</a></li>
+                <li><a href="../auth.html" class="btn btn-primary">Join Free</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="lesson-hero">
+            <div class="breadcrumb">
+                <a href="../tracks.html">Tracks</a> / <a href="../tracks.html">Quantum Computing for Devs</a> / Module 5: Running on Real Quantum Hardware / <span style="color:var(--text-color)">Amazon Braket & Azure Quantum</span>
+            </div>
+            <div class="glass-pill" style="margin-bottom:1rem;">
+                Module 5: Running on Real Quantum Hardware
+            </div>
+            <h1 style="font-size:2.5rem; margin-bottom:0.5rem;">Amazon Braket & Azure Quantum</h1>
+            <div class="lesson-meta">
+                <span>⏱ 40 min</span>
+                <span>📚 Quantum Computing for Devs</span>
+                <span>🧩 Lesson 5.2</span>
+            </div>
+            <div class="topics-row"><span class="topic-tag">Multi-provider Access</span><span class="topic-tag">Device Comparison</span><span class="topic-tag">Cost Management</span><span class="topic-tag">Hybrid Jobs</span></div>
+        </section>
+
+        <div class="lesson-body">
+            <div class="key-concepts">
+                <div class="section-label">Core Concepts</div>
+                
+                <div class="concept-card">
+                    <h4>Amazon Braket</h4>
+                    <p>AWS quantum computing service giving access to IQM (superconducting), IonQ (trapped ion), QuEra (neutral atom), and Rigetti devices. Pay per task/shot — no commitment. Braket SDK is OpenQASM-based with Python interface. Local simulator (braket_local) is free and fast for testing.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Azure Quantum</h4>
+                    <p>Microsoft's platform providing access to IonQ, Quantinuum (trapped ion — highest fidelity), and Rigetti. Quantinuum H2 achieves 99.9% two-qubit gate fidelity — best available. Azure credits available for research. Q# language for native quantum programming; Qiskit/Cirq also supported.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Device Comparison</h4>
+                    <p>Superconducting (IBM, Rigetti, IQM): fast gates (~50ns), lower fidelity, short coherence. Trapped ion (IonQ, Quantinuum): slow gates (~100μs), very high fidelity (99.9%), all-to-all connectivity. Neutral atom (QuEra): large qubit counts (256+), programmable connectivity, longer coherence. Match device type to algorithm requirements.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Hybrid Classical-Quantum Jobs</h4>
+                    <p>Braket Hybrid Jobs and Azure Quantum Hybrid run classical code co-located with quantum hardware — eliminates network latency between classical optimizer and quantum circuit evaluations. Essential for VQE/QAOA where thousands of circuit evaluations iterate in a tight classical-quantum loop.</p>
+                </div>
+            </div>
+            <div class="code-block"><pre><code># Amazon Braket example
+import boto3
+from braket.aws import AwsDevice, AwsQuantumTask
+from braket.circuits import Circuit
+
+# Create Bell state circuit
+circuit = Circuit()
+circuit.h(0).cnot(0, 1).measure(0).measure(1)
+
+# List available devices
+braket = boto3.client("braket", region_name="us-east-1")
+devices = AwsDevice.get_devices(types=["QPU"], statuses=["ONLINE"])
+for d in devices:
+    print(f"{d.name}: {d.properties.paradigm.qubitCount} qubits")
+
+# Run on IonQ simulator (cheapest)
+device = AwsDevice("arn:aws:braket:::device/quantum-simulator/amazon/sv1")
+task = device.run(circuit, shots=1000)
+result = task.result()
+print("Bell state counts:", result.measurement_counts)
+
+# Cost estimation
+# QPU costs: IonQ ~$0.01/shot, Rigetti ~$0.0035/shot, Quantinuum ~$0.00065/shot
+# Simulator: SV1 ~$0.075/task + $0.00035/shot
+
+# Azure Quantum (using Qiskit provider)
+# from azure.quantum.qiskit import AzureQuantumProvider
+# provider = AzureQuantumProvider(resource_id="...", location="eastus")
+# backend = provider.get_backend("ionq.qpu.aria-1")
+# job = execute(qiskit_circuit, backend, shots=1024)
+# result = job.result()</code></pre></div>
+            <div class="resources-section">
+                <h3>📎 Resources & Further Reading</h3>
+                <a href="https://docs.aws.amazon.com/braket/" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>AWS Braket Docs</a><a href="https://learn.microsoft.com/en-us/azure/quantum/" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Azure Quantum Docs</a><a href="https://www.youtube.com/watch?v=7XzdZ4KcI4Y" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Cloud Quantum Computing Compared (YouTube)</a>
+            </div>
+            <div class="lesson-nav">
+                <a href="q-m5-l1-ibm-quantum.html" class="nav-btn nav-btn-prev">← IBM Quantum & Qiskit Runtime</a>
+                <a href="../tracks.html" class="nav-btn nav-btn-next">Back to Tracks →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="border-top: 1px solid var(--glass-border); padding: 3rem 0;">
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                    Dev<span>Scroll</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Twitter</a>
+                    <a href="#" style="margin-left:1.5rem;">GitHub</a>
+                </div>
+            </div>
+            <div class="copyright" style="padding-top:1.5rem;">&copy; 2026 DevScroll Learning Inc.</div>
+        </div>
+    </footer>
+    <script src="../main.js"></script>
+</body>
+</html>

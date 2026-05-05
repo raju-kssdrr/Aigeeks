@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScroll | Self-hosted LLMs (vLLM)</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .lesson-hero { padding: 7rem 0 3rem; }
+        .lesson-hero .breadcrumb { font-size: 0.85rem; color: var(--muted-text); margin-bottom: 1rem; }
+        .lesson-hero .breadcrumb a { color: var(--cta-color); text-decoration: none; }
+        .lesson-body { max-width: 820px; margin: 0 auto; padding-bottom: 6rem; }
+        .lesson-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 2.5rem; }
+        .lesson-meta span { font-size: 0.8rem; padding: 0.25rem 0.75rem; border-radius: 999px; border: 1px solid var(--glass-border); color: var(--muted-text); background: rgba(255,255,255,0.04); }
+        .topic-tag { display: inline-block; font-size: 0.78rem; padding: 0.2rem 0.65rem; border-radius: 999px; background: rgba(34,197,94,0.1); color: var(--cta-color); border: 1px solid rgba(34,197,94,0.2); margin: 0.2rem; }
+        .topics-row { margin: 1.5rem 0; }
+        .concept-card { background: var(--primary-color); border: 1px solid var(--glass-border); border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; }
+        .concept-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-color); }
+        .concept-card p { color: var(--muted-text); font-size: 0.92rem; line-height: 1.7; }
+        .code-block { background: #0d1117; border: 1px solid var(--glass-border); border-radius: 1rem; padding: 1.5rem; margin: 2rem 0; overflow-x: auto; }
+        .code-block pre { margin: 0; }
+        .code-block code { font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.88rem; color: #e6edf3; line-height: 1.7; }
+        .resources-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); }
+        .resources-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-color); }
+        .resource-link { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 0.75rem; margin-bottom: 0.5rem; color: var(--text-color); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .resource-link:hover { border-color: var(--cta-color); color: var(--cta-color); }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); }
+        .nav-btn { padding: 0.6rem 1.4rem; border-radius: 2rem; border: 1px solid var(--glass-border); color: var(--text-color); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .nav-btn:hover { border-color: var(--cta-color); color: var(--cta-color); }
+        .nav-btn-next { background: var(--cta-color); color: #000; border-color: var(--cta-color); font-weight: 600; }
+        .nav-btn-next:hover { opacity: 0.85; color: #000; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cta-color); margin-bottom: 0.75rem; }
+        .key-concepts { margin: 2.5rem 0; }
+        .intro-text { font-size: 1.05rem; line-height: 1.8; color: var(--muted-text); margin-bottom: 2rem; border-left: 3px solid var(--cta-color); padding-left: 1.25rem; }
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                Dev<span>Scroll</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../tracks.html">Tracks</a></li>
+                <li><a href="../resources.html">Resources</a></li>
+                <li><a href="../roadmap.html">AI Engineering Roadmap</a></li>
+                <li><a href="../video-paths.html">AI Mastery Videos</a></li>
+                <li><a href="../harness-roadmap.html">Harness Roadmap</a></li>
+                <li><a href="../university.html">Academy</a></li>
+                <li><a href="../agents.html">Agents</a></li>
+                <li><a href="../auth.html" class="btn btn-primary">Join Free</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="lesson-hero">
+            <div class="breadcrumb">
+                <a href="../tracks.html">Tracks</a> / <a href="../tracks.html">AI Engineering for Devs</a> / Module 5: Production Deployment / <span style="color:var(--text-color)">Self-hosted LLMs (vLLM)</span>
+            </div>
+            <div class="glass-pill" style="margin-bottom:1rem;">
+                Module 5: Production Deployment
+            </div>
+            <h1 style="font-size:2.5rem; margin-bottom:0.5rem;">Self-hosted LLMs (vLLM)</h1>
+            <div class="lesson-meta">
+                <span>⏱ 50 min</span>
+                <span>📚 AI Engineering for Devs</span>
+                <span>🧩 Lesson 5.2</span>
+            </div>
+            <div class="topics-row"><span class="topic-tag">vLLM Server</span><span class="topic-tag">Quantization</span><span class="topic-tag">Batching</span><span class="topic-tag">GPU Memory Management</span></div>
+        </section>
+
+        <div class="lesson-body">
+            <div class="key-concepts">
+                <div class="section-label">Core Concepts</div>
+                
+                <div class="concept-card">
+                    <h4>vLLM & PagedAttention</h4>
+                    <p>vLLM is the fastest open-source LLM inference engine. PagedAttention manages KV-cache in non-contiguous memory pages (like OS virtual memory), eliminating memory fragmentation. Enables 24x higher throughput than naive HuggingFace inference. Exposes an OpenAI-compatible REST API.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Quantization</h4>
+                    <p>INT4/INT8 quantization reduces model size and speeds inference at slight quality cost. GPTQ (post-training quantization) and AWQ (activation-aware) are production standards. AWQ outperforms GPTQ at 4-bit. For CPU inference, use GGUF format with llama.cpp. Ollama wraps llama.cpp for easy local deployment.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Continuous Batching</h4>
+                    <p>vLLM uses continuous batching — new requests join the batch as soon as a sequence finishes, rather than waiting for the entire batch to complete. Dramatically increases GPU utilization (from ~30% to 80%+) under real traffic patterns. Set --max-num-seqs and --max-num-batched-tokens based on your GPU VRAM.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>GPU Memory Management</h4>
+                    <p>Rule of thumb: model parameters need ~2 bytes/param in fp16 (7B model ≈ 14GB). KV-cache takes additional memory proportional to context length × batch size. Use --gpu-memory-utilization 0.90 in vLLM. For multi-GPU: tensor parallelism (--tensor-parallel-size 2) splits a model across GPUs.</p>
+                </div>
+            </div>
+            <div class="code-block"><pre><code># Start vLLM server
+# pip install vllm
+# python -m vllm.entrypoints.openai.api_server \
+#     --model meta-llama/Llama-3.2-8B-Instruct \
+#     --tensor-parallel-size 1 \
+#     --gpu-memory-utilization 0.90 \
+#     --max-num-seqs 256
+
+# Query vLLM via OpenAI-compatible client
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="http://localhost:8000/v1",
+    api_key="not-needed",  # vLLM doesn't require auth by default
+)
+
+# Single inference
+response = client.chat.completions.create(
+    model="meta-llama/Llama-3.2-8B-Instruct",
+    messages=[{"role": "user", "content": "Explain attention mechanisms."}],
+    max_tokens=512,
+    temperature=0.7,
+)
+print(response.choices[0].message.content)
+
+# Batch inference (concurrent requests)
+import asyncio
+from openai import AsyncOpenAI
+
+async_client = AsyncOpenAI(base_url="http://localhost:8000/v1", api_key="none")
+
+async def batch_infer(prompts: list[str]) -> list[str]:
+    tasks = [
+        async_client.chat.completions.create(
+            model="meta-llama/Llama-3.2-8B-Instruct",
+            messages=[{"role": "user", "content": p}],
+            max_tokens=256,
+        )
+        for p in prompts
+    ]
+    responses = await asyncio.gather(*tasks)
+    return [r.choices[0].message.content for r in responses]
+
+results = asyncio.run(batch_infer(["What is ML?", "What is AI?", "What is DL?"]))</code></pre></div>
+            <div class="resources-section">
+                <h3>📎 Resources & Further Reading</h3>
+                <a href="https://docs.vllm.ai/en/latest/" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>vLLM Documentation</a><a href="https://ollama.com/docs/" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ollama Docs</a><a href="https://www.youtube.com/watch?v=MQLarCrdcEg" target="_blank" rel="noopener" class="resource-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Self-hosting LLMs Guide (YouTube)</a>
+            </div>
+            <div class="lesson-nav">
+                <a href="ai-m5-l1-api-integration.html" class="nav-btn nav-btn-prev">← API Integration</a>
+                <a href="ai-m5-l3-cost-optimization.html" class="nav-btn nav-btn-next">Cost Optimization & Caching →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="border-top: 1px solid var(--glass-border); padding: 3rem 0;">
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 18 6-6-6-6"></path><path d="M8 6 2 12l6 6"></path></svg>
+                    Dev<span>Scroll</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Twitter</a>
+                    <a href="#" style="margin-left:1.5rem;">GitHub</a>
+                </div>
+            </div>
+            <div class="copyright" style="padding-top:1.5rem;">&copy; 2026 DevScroll Learning Inc.</div>
+        </div>
+    </footer>
+    <script src="../main.js"></script>
+</body>
+</html>
