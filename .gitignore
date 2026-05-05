@@ -1,7 +1,8 @@
 .DS_Store
 ._*
 *.local
-.env*.local
 .env
+.env.*
+!.env.example
 node_modules/
 .vercel

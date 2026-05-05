@@ -186,7 +186,8 @@
                         if (res.ok) {
                             localStorage.setItem('devscroll_token', data.token);
                             const params = new URLSearchParams(location.search);
-                            window.location.href = params.get('next') || 'index.html';
+                            const _next = params.get('next');
+                            window.location.href = (_next && /^\/[^/]/.test(_next)) ? _next : 'index.html';
                         } else {
                             alert(data.error || 'Login failed');
                             btn.disabled = false;
